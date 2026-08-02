@@ -1,0 +1,12 @@
+Form: Nest, Eggs and Chicks.
+
+Capture a nest visit and any eggs and chicks observed.
+
+- observedTime is a date (yyyy-MM-dd); startTime and endTime are HH:mm.
+- eggDetails and chickDetails are lists: add one entry per egg or chick actually
+  described. Never add a placeholder entry, and never invent an egg or chick.
+- Nested entries carry no identifiers beyond what was spoken (e.g. chickId).
+- Chick age and weight are non-negative; a hatch date cannot precede its laying date.
+- malePresence/femalePresence use the Presence vocabulary; maleId/femaleId are the
+  spoken bird identifiers.
+- species is a reference: extract the spoken lookup key only.

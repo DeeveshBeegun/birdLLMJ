@@ -1,0 +1,7 @@
+entries:
+  - externalId: NE-100
+    nestReference: NEST-100
+    nestSiteName: Black River Gorge
+  - externalId: NE-101
+    nestReference: NEST-101
+    nestSiteName: Bel Ombre

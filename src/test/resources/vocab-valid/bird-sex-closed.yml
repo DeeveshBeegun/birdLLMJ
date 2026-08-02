@@ -1,0 +1,13 @@
+name: BirdSexClosed
+mode: CLOSED
+required: true
+allowedValues:
+  - MALE
+  - FEMALE
+  - UNKNOWN
+aliases:
+  "male": MALE
+  "m": MALE
+  "female": FEMALE
+  "f": FEMALE
+  "unknown sex": UNKNOWN

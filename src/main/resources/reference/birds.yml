@@ -1,0 +1,17 @@
+entries:
+  - externalId: BR-001
+    birdID: BIRD-001
+    birdName: Kestrel Alpha
+    comboLeft: RED-BLUE
+    comboRight: GREEN
+    leftRingNumber: L123
+    rightRingNumber: R456
+    status: ALIVE
+    sex: MALE
+  - externalId: BR-002
+    birdID: BIRD-002
+    birdName: Kestrel Beta
+    leftRingNumber: L124
+    rightRingNumber: R457
+    status: ALIVE
+    sex: FEMALE

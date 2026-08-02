@@ -1,0 +1,12 @@
+Form: Ringing and Morphometrics.
+
+Capture a ringing event and morphometric measurements.
+
+- releasedDate is a date (yyyy-MM-dd); observedTime, startTime, endTime are HH:mm.
+- All measurements (weight, tail, wing, tarsusLength, head, culmen*, p8, apparentAge)
+  are non-negative integers; only include a measurement that was actually stated.
+- Ring numbers (upper/lower left/right) and leg colours only if explicitly stated;
+  ring positions and ring numbers must not contradict one another.
+- observer and ringer are USER references: extract the spoken name only, never an id.
+- species is a reference: extract the spoken lookup key only.
+- physicalCondition: fill only the traits actually described.

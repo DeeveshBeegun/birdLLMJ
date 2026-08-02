@@ -1,0 +1,9 @@
+entries:
+  - externalId: TR-FICUS
+    code: FICUS
+    scientificName: Ficus benjamina
+    status: NATIVE
+  - externalId: TR-EUGE
+    code: EUGE
+    scientificName: Eugenia lucida
+    status: NATIVE

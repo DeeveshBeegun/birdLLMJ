@@ -1,0 +1,22 @@
+# Render Blueprint: deploy the Spring Boot app as a single Docker web service.
+# The LLM runs on Modal's GPU (see deploy/ollama_modal.py), so no Ollama service is needed here.
+#
+# Deploy: push to GitHub, then in Render -> New -> Blueprint, point at this repo.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: wildlife-form-extractor
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard                       # 2GB RAM; Starter (512MB) is tight for a Spring Boot 4 JVM
+    region: oregon
+    healthCheckPath: /actuator/health/liveness
+    autoDeploy: true
+    envVars:
+      - key: OLLAMA_BASE_URL
+        value: https://deeveshbeegun--ollama-wildlife-serve.modal.run
+      - key: OLLAMA_CHAT_MODEL
+        value: llama3.2:3b
+      # Keep the JVM within the container's memory limit.
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:MaxRAMPercentage=70"

@@ -1,0 +1,12 @@
+Form: Nest-Site Characteristics.
+
+Capture the physical description of a nest site and its tree.
+
+- observedTime is a date (yyyy-MM-dd); startTime and endTime are HH:mm.
+- bearing is degrees in [0, 360); dimensions (nestHeight, entranceDiameter,
+  cavityDepth, heightAboveNestBowl, etc.) are non-negative.
+- Height and circumference free-text fields preserve spoken units exactly.
+- bird1Id/bird1Sex/bird2Id/bird2Sex are the current identity fields; do not use
+  legacy maleId/femaleId.
+- species and treeSpecies are references: extract the spoken lookup key only.
+- Fill only characteristics actually described; leave the rest MISSING.

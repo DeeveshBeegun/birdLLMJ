@@ -1,0 +1,25 @@
+spring:
+  ai:
+    ollama:
+      # A base URL that is never contacted during the normal test lifecycle.
+      base-url: http://localhost:0
+      init:
+        pull-model-strategy: never
+
+application:
+  extraction:
+    maximum-transcript-length: 15000
+    maximum-model-response-length: 100000
+    maximum-correction-attempts: 1
+    model-timeout: 45s
+    queue-wait-timeout: 10s
+    maximum-concurrent-model-calls: 4
+    maximum-pending-model-calls: 50
+    maximum-eggs-per-observation: 20
+    maximum-chicks-per-observation: 20
+    evidence-check-enabled: true
+    persist-raw-transcript: false
+    legacy-fields-enabled: false
+    strict-vocabulary-validation: false
+    rag-enabled: false
+    maximum-infrastructure-retries: 1

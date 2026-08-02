@@ -1,0 +1,9 @@
+name: SightingTypeOpen
+mode: OPEN
+required: false
+allowedValues:
+  - DIRECT
+  - INDIRECT
+aliases:
+  "direct sighting": DIRECT
+  "seen directly": DIRECT

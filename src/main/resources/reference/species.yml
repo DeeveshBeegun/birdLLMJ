@@ -1,0 +1,26 @@
+# Trusted species reference data. Add entries here; never let the model create species.
+entries:
+  - externalId: SP-ECHO
+    speciesKey: ECHO_PARAKEET
+    commonName: Echo Parakeet
+    latinName: Psittacula eques
+    description: Endemic Mauritian parakeet
+    indigenous: true
+    categoryName: Parrot
+    feedingTrait: Frugivore
+  - externalId: SP-RING
+    speciesKey: RING_NECKED_PARAKEET
+    commonName: Ring-necked Parakeet
+    latinName: Psittacula krameri
+    description: Introduced parakeet
+    indigenous: false
+    categoryName: Parrot
+    feedingTrait: Granivore
+  - externalId: SP-PINK
+    speciesKey: PINK_PIGEON
+    commonName: Pink Pigeon
+    latinName: Nesoenas mayeri
+    description: Endemic Mauritian pigeon
+    indigenous: true
+    categoryName: Pigeon
+    feedingTrait: Frugivore

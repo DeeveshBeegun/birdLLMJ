@@ -1,0 +1,11 @@
+Form: Competitors and Predators.
+
+Capture competing or predatory species observed at or near a nest.
+
+- observedTime is a date (yyyy-MM-dd).
+- numOfCompetitor and distanceFromNest are non-negative.
+- Fill competitor fields only when consistent with hasCompetitorInfo; if no
+  competitor information was described, leave them MISSING.
+- competitorSpecies and species are references: extract the spoken lookup key only.
+- impact and action are lists of vocabulary values; include only stated items.
+- Mark conflicting presence statements as AMBIGUOUS rather than guessing.

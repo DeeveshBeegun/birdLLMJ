@@ -1,0 +1,8 @@
+name: ClosedBadAliasVocabulary
+mode: CLOSED
+required: false
+allowedValues:
+  - ALPHA
+  - BRAVO
+aliases:
+  "charlie": CHARLIE

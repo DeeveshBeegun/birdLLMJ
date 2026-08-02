@@ -1,0 +1,1392 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://acn.com/wildlife/schemas/sighting-v1.json",
+  "title": "sighting-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "formType",
+    "extractionStatus",
+    "fields"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "sighting-v1"
+    },
+    "formType": {
+      "const": "SIGHTING"
+    },
+    "extractionStatus": {
+      "enum": [
+        "COMPLETE",
+        "INCOMPLETE",
+        "INVALID"
+      ]
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "latitude": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/extractedDecimal"
+            },
+            {
+              "properties": {
+                "normalizedValue": {
+                  "minimum": -90,
+                  "maximum": 90
+                }
+              }
+            }
+          ]
+        },
+        "longitude": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/extractedDecimal"
+            },
+            {
+              "properties": {
+                "normalizedValue": {
+                  "minimum": -180,
+                  "maximum": 180
+                }
+              }
+            }
+          ]
+        },
+        "comment": {
+          "$ref": "#/$defs/extractedString"
+        },
+        "observedTime": {
+          "$ref": "#/$defs/extractedTime"
+        },
+        "startTime": {
+          "$ref": "#/$defs/extractedTime"
+        },
+        "endTime": {
+          "$ref": "#/$defs/extractedTime"
+        },
+        "subPopulation": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "sightingType": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "feederLocation": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "species": {
+          "$ref": "#/$defs/extractedReference"
+        },
+        "nestSite": {
+          "$ref": "#/$defs/extractedString"
+        },
+        "upperRight": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "upperLeft": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "lowerRight": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "lowerLeft": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "leftLeg": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "rightLeg": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "seenSex": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "stage": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "causeOfDeath": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "stageOfDecomposition": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "behaviour": {
+          "$ref": "#/$defs/extractedCodeList"
+        },
+        "suspectedPairNumber": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/extractedInteger"
+            },
+            {
+              "properties": {
+                "normalizedValue": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "ringingMorphs": {
+          "$ref": "#/$defs/extractedReference"
+        },
+        "physicalCondition": {
+          "$ref": "#/$defs/physicalCondition"
+        },
+        "photoMentioned": {
+          "$ref": "#/$defs/extractedBoolean"
+        }
+      }
+    },
+    "missingRequiredFields": {
+      "$ref": "#/$defs/nameList"
+    },
+    "ambiguousFields": {
+      "$ref": "#/$defs/nameList"
+    },
+    "invalidFields": {
+      "$ref": "#/$defs/nameList"
+    },
+    "unresolvedReferences": {
+      "$ref": "#/$defs/nameList"
+    },
+    "warnings": {
+      "$ref": "#/$defs/warnings"
+    }
+  },
+  "$defs": {
+    "fieldStatus": {
+      "enum": [
+        "PRESENT",
+        "MISSING",
+        "AMBIGUOUS",
+        "INVALID",
+        "NOT_APPLICABLE",
+        "UNRESOLVED_REFERENCE"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      }
+    },
+    "nameList": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "extractedString": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValue": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedBoolean": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValue": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedInteger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValue": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedDecimal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValue": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedDate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValue": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedTime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{2}:\\d{2}$"
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValue": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        },
+        "vocabularyName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValue": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedStringList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValues": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        },
+        "normalizedValues": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValues": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedCodeList": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "rawValues": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        },
+        "normalizedValues": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        },
+        "vocabularyName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MISSING",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalizedValues": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "extractedReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "spokenValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "referenceType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "lookupKey": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "resolvedExternalId": {
+          "type": "null"
+        },
+        "resolvedDisplayName": {
+          "type": "null"
+        },
+        "resolutionStatus": {
+          "enum": [
+            "RESOLVED",
+            "NOT_FOUND",
+            "AMBIGUOUS",
+            "NOT_REQUESTED",
+            null
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/fieldStatus"
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "candidates": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "warnings": {
+          "$ref": "#/$defs/warnings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ],
+            "properties": {
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "const": "MISSING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "physicalCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hasClinicalSigns": {
+          "$ref": "#/$defs/extractedBoolean"
+        },
+        "hasInjury": {
+          "$ref": "#/$defs/extractedBoolean"
+        },
+        "clinicalSigns": {
+          "$ref": "#/$defs/extractedCodeList"
+        },
+        "condition": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "activityLevel": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "suspectedDisease": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "injurySeverity": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "featherCondition": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "yellowFeathers": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "primaries": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "wingFeathers": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "tailFeathers": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "bodyFeathers": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "beak": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "plumage": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "legs": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "vent": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "gape": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "nostrils": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "ears": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "parasite": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "plucked": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "eyes": {
+          "$ref": "#/$defs/extractedCode"
+        }
+      }
+    },
+    "egg": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "individualNumber": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "photoMentioned": {
+          "$ref": "#/$defs/extractedBoolean"
+        },
+        "comments": {
+          "$ref": "#/$defs/extractedString"
+        },
+        "fertility": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "status": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "dateLaid": {
+          "$ref": "#/$defs/extractedDate"
+        }
+      }
+    },
+    "chick": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "individualNumber": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "photoMentioned": {
+          "$ref": "#/$defs/extractedBoolean"
+        },
+        "comments": {
+          "$ref": "#/$defs/extractedString"
+        },
+        "hatchDate": {
+          "$ref": "#/$defs/extractedDate"
+        },
+        "weight": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/extractedDecimal"
+            },
+            {
+              "properties": {
+                "normalizedValue": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "age": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/extractedInteger"
+            },
+            {
+              "properties": {
+                "normalizedValue": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "active": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "hydrated": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "status": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "chickId": {
+          "$ref": "#/$defs/extractedString"
+        },
+        "condition": {
+          "$ref": "#/$defs/extractedCode"
+        },
+        "sampleCollected": {
+          "$ref": "#/$defs/extractedCodeList"
+        }
+      }
+    }
+  }
+}

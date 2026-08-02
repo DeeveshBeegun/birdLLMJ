@@ -1,0 +1,97 @@
+spring:
+  application:
+    name: wildlife-form-extractor
+
+  # HTTP client timeouts for the Ollama REST calls. read-timeout is generous so a slow first
+  # (cold) model call waits rather than failing; connect-timeout stays short to fail fast if the
+  # endpoint is unreachable.
+  http:
+    client:
+      connect-timeout: 10s
+      read-timeout: 180s
+
+  # Reject unknown properties everywhere: the model must never introduce fields outside
+  # the declared schema. Temporal values render as ISO-8601 text (Boot default).
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+    default-property-inclusion: always
+
+  ai:
+    # Provider-native structured output (options.format) and thinking are set
+    # programmatically per request in the Ollama adapter. These are startup defaults.
+    ollama:
+      # Defaults point at the Modal-hosted (GPU) Ollama; override with env vars for a local server,
+      # e.g. OLLAMA_BASE_URL=http://localhost:11434.
+      base-url: ${OLLAMA_BASE_URL:https://deeveshbeegun--ollama-wildlife-serve.modal.run}
+      init:
+        pull-model-strategy: never
+      chat:
+        options:
+          model: "${OLLAMA_CHAT_MODEL:llama3.2:3b}"
+          temperature: 0.0
+    chat:
+      client:
+        tool-calling:
+          enabled: false
+
+server:
+  # Bind to the platform-assigned port when present (Render/Heroku set PORT); default 8080 locally.
+  port: ${PORT:8080}
+  max-http-request-header-size: 16KB
+  tomcat:
+    max-swallow-size: 2MB
+    max-http-form-post-size: 2MB
+
+application:
+  extraction:
+    maximum-transcript-length: 15000
+    maximum-model-response-length: 100000
+    maximum-correction-attempts: 1
+    model-timeout: 3600s
+    queue-wait-timeout: 3600s
+    maximum-concurrent-model-calls: 4
+    maximum-pending-model-calls: 50
+    maximum-eggs-per-observation: 20
+    maximum-chicks-per-observation: 20
+    evidence-check-enabled: true
+    persist-raw-transcript: false
+    legacy-fields-enabled: false
+    strict-vocabulary-validation: false
+    rag-enabled: false
+    maximum-infrastructure-retries: 1
+    # Ollama request tuning (latency + structured output).
+    ollama:
+      # false = generic JSON mode + downstream schema enforcement (works everywhere);
+      # true = send the full JSON Schema as native format (only on servers/schemas Ollama can parse).
+      native-schema-format: false
+      # Context window: large enough for the prompt + output; small defaults overflow and fail.
+      num-ctx: 8192
+      # Hard cap on generated tokens (bounds worst-case latency).
+      num-predict: 2048
+      # How long Ollama keeps the model resident between calls (avoids reload latency).
+      keep-alive: 30m
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.acn.wildlifeextractor: INFO
+  pattern:
+    # Include the correlation id; never log transcripts, prompts, coordinates or identifiers.
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%X{correlationId:-}] %logger{36} - %msg%n"

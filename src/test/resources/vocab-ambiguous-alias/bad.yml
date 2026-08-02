@@ -1,0 +1,7 @@
+name: AmbiguousAliasVocabulary
+mode: OPEN
+required: false
+allowedValues: []
+aliases:
+  "grey": GREY
+  "Grey ": GRAY

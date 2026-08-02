@@ -1,0 +1,13 @@
+Form: Feeding Observation.
+
+Capture what a bird was feeding on and the surrounding conditions.
+
+- observedTime is a date (yyyy-MM-dd), not a time.
+- Fill feeding fields (itemConsumed, itemDescription, feedingOutCome) only if
+  feeding was actually described. Do not fabricate feeding details.
+- Resolve treeSpecies only if a tree is referenced; treeStatus likewise.
+- foragingHeight and treeHeight are free text: preserve the spoken phrasing and
+  units exactly; do not convert.
+- Weather (cloud, wind, rain) only if stated; otherwise leave MISSING.
+- species and ringingMorphs are references: extract the spoken lookup key only.
+- The property name feedingOutCome is intentional; do not rename it.
