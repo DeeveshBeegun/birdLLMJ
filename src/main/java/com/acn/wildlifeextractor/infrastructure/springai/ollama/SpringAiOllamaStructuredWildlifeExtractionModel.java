@@ -22,6 +22,7 @@ import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.ollama.api.OllamaChatOptions;
 import org.springframework.ai.ollama.api.ThinkOption;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -51,18 +52,21 @@ public class SpringAiOllamaStructuredWildlifeExtractionModel implements Structur
     private final ObjectMapper extractionObjectMapper;
     private final ExtractionProperties properties;
     private final OllamaTuningProperties tuning;
+    private final String chatModelName;
 
     public SpringAiOllamaStructuredWildlifeExtractionModel(
             ChatModel chatModel,
             OllamaExtractionPromptFactory promptFactory,
             ObjectMapper extractionObjectMapper,
             ExtractionProperties properties,
-            OllamaTuningProperties tuning) {
+            OllamaTuningProperties tuning,
+            @Value("${spring.ai.ollama.chat.options.model:llama3.2:3b}") String chatModelName) {
         this.chatModel = chatModel;
         this.promptFactory = promptFactory;
         this.extractionObjectMapper = extractionObjectMapper;
         this.properties = properties;
         this.tuning = tuning;
+        this.chatModelName = chatModelName;
     }
 
     @Override
@@ -70,6 +74,8 @@ public class SpringAiOllamaStructuredWildlifeExtractionModel implements Structur
         List<Message> messages = List.of(promptFactory.systemMessage(request), promptFactory.userMessage(request));
         Prompt prompt = new Prompt(messages, buildOptions(request));
 
+        log.info("Extraction model call starting: provider={} model={} baseModel={} form={} purpose={}",
+                PROVIDER, chatModelName, chatModelName, request.formType(), request.purpose());
         long startNanos = System.nanoTime();
         ChatResponse response = chatModel.call(prompt);
         Duration duration = Duration.ofNanos(System.nanoTime() - startNanos);
@@ -92,7 +98,10 @@ public class SpringAiOllamaStructuredWildlifeExtractionModel implements Structur
         // numCtx: the output contract makes the prompt large, and Ollama's small default context
         // would overflow and fail the request on some models. numPredict caps worst-case latency;
         // keepAlive keeps the model resident so subsequent calls skip the reload cost.
+        // Set the model explicitly so the request never depends on Spring AI's default-option
+        // merge — the model that is logged is exactly the model that is sent.
         return OllamaChatOptions.builder()
+                .model(chatModelName)
                 .temperature(0.0d)
                 .format(format)
                 .numCtx(tuning.numCtx())

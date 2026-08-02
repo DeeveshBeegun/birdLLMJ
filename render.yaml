@@ -8,7 +8,7 @@ services:
     name: wildlife-form-extractor
     runtime: docker
     dockerfilePath: ./Dockerfile
-    plan: standard                       # 2GB RAM; Starter (512MB) is tight for a Spring Boot 4 JVM
+    plan: free                           # 512MB RAM, spins down when idle (see notes below)
     region: oregon
     healthCheckPath: /actuator/health/liveness
     autoDeploy: true
@@ -17,6 +17,12 @@ services:
         value: https://deeveshbeegun--ollama-wildlife-serve.modal.run
       - key: OLLAMA_CHAT_MODEL
         value: llama3.2:3b
-      # Keep the JVM within the container's memory limit.
+      # Fit the JVM into 512MB: cap heap%, use the low-footprint Serial GC, bound metaspace and
+      # thread stacks. Trim these further if the instance OOMs on startup.
       - key: JAVA_TOOL_OPTIONS
-        value: "-XX:MaxRAMPercentage=70"
+        value: "-XX:MaxRAMPercentage=60 -XX:+UseSerialGC -XX:MaxMetaspaceSize=128m -Xss512k"
+      # Fewer Tomcat threads = less memory (a single-user demo needs very few).
+      - key: SERVER_TOMCAT_THREADS_MAX
+        value: "15"
+      - key: SERVER_TOMCAT_THREADS_MIN_SPARE
+        value: "1"

@@ -65,7 +65,7 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
     private SpringAiOllamaStructuredWildlifeExtractionModel adapter(ChatModel chatModel, boolean nativeSchemaFormat) {
         return new SpringAiOllamaStructuredWildlifeExtractionModel(
                 chatModel, promptFactory, mapper, TestProperties.defaults(),
-                new OllamaTuningProperties(nativeSchemaFormat, 8192, 2048, "30m"));
+                new OllamaTuningProperties(nativeSchemaFormat, 8192, 2048, "30m"), "test-model");
     }
 
     @Test
@@ -150,7 +150,7 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
                 new SpringAiOllamaStructuredWildlifeExtractionModel(
                         modelReturning(big), promptFactory, mapper,
                         TestProperties.withMaximumModelResponseLength(50),
-                        new OllamaTuningProperties(false, 8192, 2048, "30m"));
+                        new OllamaTuningProperties(false, 8192, 2048, "30m"), "test-model");
         assertThatThrownBy(() -> adapter.extract(request()))
                 .isInstanceOf(ModelOutputTooLargeException.class);
     }
