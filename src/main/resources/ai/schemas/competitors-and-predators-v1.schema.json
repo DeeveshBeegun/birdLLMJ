@@ -1125,6 +1125,20 @@
         "status"
       ],
       "properties": {
+        "rawValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4000
+        },
         "spokenValue": {
           "type": [
             "string",

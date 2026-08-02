@@ -55,7 +55,12 @@ public class DeterministicReferenceResolutionStage implements ReferenceResolutio
             return;
         }
         String referenceType = text(node.get("referenceType"));
-        String lookupKey = firstNonBlank(text(node.get("lookupKey")), text(node.get("spokenValue")));
+        // Small models put the spoken value in different keys; accept any of them as the lookup.
+        String lookupKey = firstNonBlank(
+                text(node.get("lookupKey")),
+                text(node.get("spokenValue")),
+                text(node.get("normalizedValue")),
+                text(node.get("rawValue")));
         ReferenceResolver resolver = referenceType == null ? null : resolversByType.get(referenceType);
         if (resolver == null) {
             markUnresolved(path, node, ReferenceResolution.notFound(), findings);
@@ -91,10 +96,12 @@ public class DeterministicReferenceResolutionStage implements ReferenceResolutio
         return node != null && node.isTextual() ? node.asText() : null;
     }
 
-    private String firstNonBlank(String first, String second) {
-        if (first != null && !first.isBlank()) {
-            return first;
+    private String firstNonBlank(String... values) {
+        for (String value : values) {
+            if (value != null && !value.isBlank()) {
+                return value;
+            }
         }
-        return second;
+        return null;
     }
 }
