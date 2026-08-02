@@ -65,7 +65,8 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
     private SpringAiOllamaStructuredWildlifeExtractionModel adapter(ChatModel chatModel, boolean nativeSchemaFormat) {
         return new SpringAiOllamaStructuredWildlifeExtractionModel(
                 chatModel, promptFactory, mapper, TestProperties.defaults(),
-                new OllamaTuningProperties(nativeSchemaFormat, 8192, 2048, "30m"), "test-model");
+                new OllamaTuningProperties(nativeSchemaFormat, 8192, 2048, "30m"),
+                new OllamaGrammarSchemaFactory(mapper), "test-model");
     }
 
     @Test
@@ -93,7 +94,7 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
     }
 
     @Test
-    void defaultsToGenericJsonFormatWithTemperatureZeroThinkingDisabledAndNoTools() {
+    void defaultsToGrammarSchemaFormatWithTemperatureZeroThinkingDisabledAndNoTools() {
         ChatModel chatModel = modelReturning("{}");
         adapter(chatModel).extract(request());
 
@@ -102,7 +103,11 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
         OllamaChatOptions options = (OllamaChatOptions) captor.getValue().getOptions();
 
         assertThat(options.getTemperature()).isEqualTo(0.0d);
-        assertThat(options.getFormat()).isEqualTo("json");
+        assertThat(options.getFormat()).isInstanceOf(Map.class);
+        @SuppressWarnings("unchecked")
+        Map<String, Object> format = (Map<String, Object>) options.getFormat();
+        assertThat(format).containsEntry("type", "object");
+        assertThat(format).containsKey("properties");
         assertThat(options.getToolCallbacks()).isNullOrEmpty();
     }
 
@@ -150,7 +155,8 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
                 new SpringAiOllamaStructuredWildlifeExtractionModel(
                         modelReturning(big), promptFactory, mapper,
                         TestProperties.withMaximumModelResponseLength(50),
-                        new OllamaTuningProperties(false, 8192, 2048, "30m"), "test-model");
+                        new OllamaTuningProperties(false, 8192, 2048, "30m"),
+                        new OllamaGrammarSchemaFactory(mapper), "test-model");
         assertThatThrownBy(() -> adapter.extract(request()))
                 .isInstanceOf(ModelOutputTooLargeException.class);
     }

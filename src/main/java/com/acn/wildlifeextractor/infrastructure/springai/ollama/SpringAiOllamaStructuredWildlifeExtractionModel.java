@@ -45,13 +45,13 @@ public class SpringAiOllamaStructuredWildlifeExtractionModel implements Structur
 
     private static final Logger log = LoggerFactory.getLogger(SpringAiOllamaStructuredWildlifeExtractionModel.class);
     private static final String PROVIDER = "ollama";
-    private static final String GENERIC_JSON_FORMAT = "json";
 
     private final ChatModel chatModel;
     private final OllamaExtractionPromptFactory promptFactory;
     private final ObjectMapper extractionObjectMapper;
     private final ExtractionProperties properties;
     private final OllamaTuningProperties tuning;
+    private final OllamaGrammarSchemaFactory grammarSchemaFactory;
     private final String chatModelName;
 
     public SpringAiOllamaStructuredWildlifeExtractionModel(
@@ -60,12 +60,14 @@ public class SpringAiOllamaStructuredWildlifeExtractionModel implements Structur
             ObjectMapper extractionObjectMapper,
             ExtractionProperties properties,
             OllamaTuningProperties tuning,
+            OllamaGrammarSchemaFactory grammarSchemaFactory,
             @Value("${spring.ai.ollama.chat.options.model:llama3.2:3b}") String chatModelName) {
         this.chatModel = chatModel;
         this.promptFactory = promptFactory;
         this.extractionObjectMapper = extractionObjectMapper;
         this.properties = properties;
         this.tuning = tuning;
+        this.grammarSchemaFactory = grammarSchemaFactory;
         this.chatModelName = chatModelName;
     }
 
@@ -94,7 +96,12 @@ public class SpringAiOllamaStructuredWildlifeExtractionModel implements Structur
     private OllamaChatOptions buildOptions(WildlifeModelExtractionRequest request) {
         // Fluent chain: each builder call's return value is used, so a copy-style builder is
         // handled correctly. Temperature zero for determinism and thinking explicitly disabled.
-        Object format = tuning.nativeSchemaFormat() ? parseSchema(request.jsonSchema()) : GENERIC_JSON_FORMAT;
+        // Default: a grammar-safe schema derived from the strict schema, which Ollama can compile
+        // and which forces the correct envelope structure. nativeSchemaFormat sends the full strict
+        // schema instead (only for servers whose grammar engine can parse it).
+        Object format = tuning.nativeSchemaFormat()
+                ? parseSchema(request.jsonSchema())
+                : grammarSchemaFactory.build(request.jsonSchema());
         // numCtx: the output contract makes the prompt large, and Ollama's small default context
         // would overflow and fail the request on some models. numPredict caps worst-case latency;
         // keepAlive keeps the model resident so subsequent calls skip the reload cost.

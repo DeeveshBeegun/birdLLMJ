@@ -43,7 +43,8 @@ class SecurityLoggingTest {
         SpringAiOllamaStructuredWildlifeExtractionModel adapter =
                 new SpringAiOllamaStructuredWildlifeExtractionModel(
                         chatModel, new OllamaExtractionPromptFactory(new ObjectMapper()), new ObjectMapper(), TestProperties.defaults(),
-                        new com.acn.wildlifeextractor.configuration.OllamaTuningProperties(false, 8192, 2048, "30m"), "test-model");
+                        new com.acn.wildlifeextractor.configuration.OllamaTuningProperties(false, 8192, 2048, "30m"),
+                        new OllamaGrammarSchemaFactory(new ObjectMapper()), "test-model");
 
         Logger logger = (Logger) LoggerFactory.getLogger(SpringAiOllamaStructuredWildlifeExtractionModel.class);
         ListAppender<ILoggingEvent> appender = new ListAppender<>();
