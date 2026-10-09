@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.acn.wildlifeextractor.application.error.MalformedModelOutputException;
 import com.acn.wildlifeextractor.application.error.ModelOutputTooLargeException;
 import com.acn.wildlifeextractor.application.extraction.RawModelExtractionResponse;
@@ -39,6 +41,7 @@ public class SpringAiOpenAiStructuredWildlifeExtractionModel implements Structur
 
     private static final Logger log = LoggerFactory.getLogger(SpringAiOpenAiStructuredWildlifeExtractionModel.class);
     private static final String PROVIDER = "openrouter";
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private final OpenAiChatModel chatModel;
     private final OllamaExtractionPromptFactory promptFactory;
@@ -68,7 +71,7 @@ public class SpringAiOpenAiStructuredWildlifeExtractionModel implements Structur
         Duration duration = Duration.ofNanos(System.nanoTime() - startNanos);
 
         String content = extractContent(response);
-        log.info("Raw model output: {}", content);
+        log.info("Raw model output:\n{}", prettyJson(content));
         guardResponseSize(content);
 
         String model = resolveModel(response);
@@ -77,6 +80,14 @@ public class SpringAiOpenAiStructuredWildlifeExtractionModel implements Structur
         log.info("Extraction model call completed form={} purpose={} provider={} model={} durationMs={}",
                 request.formType(), request.purpose(), PROVIDER, model, duration.toMillis());
         return result;
+    }
+
+    private static String prettyJson(String raw) {
+        try {
+            return MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(MAPPER.readTree(raw));
+        } catch (Exception e) {
+            return raw;
+        }
     }
 
     private OpenAiChatOptions buildOptions() {
