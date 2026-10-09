@@ -68,6 +68,7 @@ public class SpringAiOpenAiStructuredWildlifeExtractionModel implements Structur
         Duration duration = Duration.ofNanos(System.nanoTime() - startNanos);
 
         String content = extractContent(response);
+        log.info("Raw model output: {}", content);
         guardResponseSize(content);
 
         String model = resolveModel(response);
@@ -82,6 +83,9 @@ public class SpringAiOpenAiStructuredWildlifeExtractionModel implements Structur
         return OpenAiChatOptions.builder()
                 .model(chatModelName)
                 .temperature(0.0)
+                .responseFormat(OpenAiChatModel.ResponseFormat.builder()
+                        .type(OpenAiChatModel.ResponseFormat.Type.JSON_OBJECT)
+                        .build())
                 .build();
     }
 
