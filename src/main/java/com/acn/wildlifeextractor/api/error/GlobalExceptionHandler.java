@@ -21,6 +21,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
  * Translates exceptions into RFC 9457 {@link ProblemDetail} responses carrying a stable error
@@ -59,6 +60,11 @@ public class GlobalExceptionHandler {
     ProblemDetail handleUnsupportedForm(UnsupportedWildlifeFormException ex) {
         return problem(HttpStatus.BAD_REQUEST, "UNSUPPORTED_WILDLIFE_FORM",
                 "Unsupported form", ex.getMessage());
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    ProblemDetail handleNoResource(NoResourceFoundException ex) {
+        return problem(HttpStatus.NOT_FOUND, "NOT_FOUND", "Not found", "The requested path does not exist");
     }
 
     @ExceptionHandler(ExtractionNotFoundException.class)
