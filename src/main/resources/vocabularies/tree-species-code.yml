@@ -1,8 +1,114 @@
-﻿# Controlled vocabulary: TreeSpeciesCode
+# Controlled vocabulary: TreeSpeciesCode
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: TreeSpeciesCode
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - UNK
+  - ADE_PAV
+  - ALB_LEB
+  - ALO_TOR
+  - ANT_MAD
+  - APH_THE
+  - APO_DIM
+  - ASP_SET
+  - ASP_UMB
+  - AVE_CAR
+  - BER_ZAL
+  - CAL_CIT
+  - CAL_EPU
+  - CALOPHYLLUM_SPP
+  - CAM_SIN
+  - CAN_ODO
+  - CAN_PAN
+  - CAS_ORI
+  - CHASSALIA_SPP
+  - CIN_CAM
+  - COL_COL
+  - COR_CUR
+  - COR_INT
+  - DAL_LAT
+  - DEN_UMB
+  - DIC_ALB
+  - DIO_EGR
+  - DIO_TES
+  - DOD_VIS
+  - DRA_CON
+  - DRA_REF
+  - ERY_RMU
+  - ERYTHROYLON_SPP
+  - EUC_TER
+  - EUCALYPTUS_SPP
+  - EUG_LUC
+  - EUG_POL
+  - EUGENIA_SPP
+  - FER_BUX
+  - FIC_REF
+  - FICUS_SPP
+  - FIX_RUB
+  - FLA_IND
+  - GAE_PSY
+  - GAERTNERA_SPP
+  - GRA_BOR
+  - GRASSES
+  - HAR_MAD
+  - HIB_TIL
+  - HIL_PET
+  - HOM_POP
+  - HOMALIUM_SPP
+  - IPO_IND
+  - IPO_MAC
+  - IPO_OBS
+  - LAB_GLA
+  - LAN_CAM
+  - LIG_ROB
+  - LIT_GLU
+  - LIT_MON
+  - LUD_MAU
+  - MAN_IND
+  - MAR_ANO
+  - MAY_PYR
+  - MIM_MAX
+  - MIM_ERY
+  - MOR_CIT
+  - NUX_VER
+  - OCH_MAU
+  - SOL_APH
+  - OLE_LAN
+  - PIN_ELL
+  - PIT_DUL
+  - PRE_SER
+  - PRO_OBT
+  - PSI_CAT
+  - RAV_MAD
+  - RUB_ALC
+  - RUB_ROS
+  - SCA_TAC
+  - SCH_TER
+  - SCU_MYR
+  - SEC_DUR
+  - SID_PUB
+  - SID_BOU
+  - SID_CIN
+  - SIDEROXYLON_SPP
+  - STA_JAM
+  - SYZ_CUM
+  - SYZ_GLO
+  - GAG_PTE
+  - GAS_MAU
+  - SZY_PET
+  - TAB_PAL
+  - TAB_PER
+  - TAM_IND
+  - TAR_BOR
+  - TER_BEN
+  - TOU_ARG
+  - TUR_THO
+  - TUR_ANG
+  - WAR_TRI
+  - WOD_BIF
+  - OTHER
+  - SYZ_JAM
+  - SYZ_MAM
 aliases: {}

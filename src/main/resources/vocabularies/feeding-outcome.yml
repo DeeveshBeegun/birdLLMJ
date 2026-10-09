@@ -1,8 +1,22 @@
-﻿# Controlled vocabulary: FeedingOutcome
+# Controlled vocabulary: FeedingOutcome
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: FeedingOutcome
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - CONSUMED_ITEM
+  - PASSED_ITEM_TO_CHICK
+  - PASSED_ITEM_TO_FLEDGLING
+  - PASSED_ITEM_TO_FEMALE
+  - PASSED_ITEM_TO_MALE
+  - CACHED_ITEM
+  - UNK
+aliases:
+  "consumed item": CONSUMED_ITEM
+  "passed item to chick": PASSED_ITEM_TO_CHICK
+  "passed item to fledgling": PASSED_ITEM_TO_FLEDGLING
+  "passed item to female": PASSED_ITEM_TO_FEMALE
+  "passed item to male": PASSED_ITEM_TO_MALE
+  "cached item": CACHED_ITEM
+  "unknown": UNK

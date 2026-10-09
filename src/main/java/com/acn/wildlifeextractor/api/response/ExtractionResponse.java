@@ -1,5 +1,8 @@
 package com.acn.wildlifeextractor.api.response;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +29,12 @@ public record ExtractionResponse(
         Map<String, Object> safeModelMetadata,
         int modelCallCount,
         int correctionAttemptCount,
-        int infrastructureRetryCount
+        int infrastructureRetryCount,
+        String userId,
+        LocalTime time,
+        LocalDate date,
+        BigDecimal latitude,
+        BigDecimal longitude,
+        String subPopulation
 ) {
 }

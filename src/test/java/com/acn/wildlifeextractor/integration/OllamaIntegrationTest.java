@@ -30,7 +30,8 @@ class OllamaIntegrationTest {
         StoredExtraction result = service.extract(new ExtractionCommand(
                 "it-1", "conv-it", WildlifeFormType.SIGHTING,
                 "At ten thirty I saw an Echo Parakeet near the feeder.",
-                OffsetDateTime.parse("2026-07-30T10:30:00+04:00"), "en"));
+                OffsetDateTime.parse("2026-07-30T10:30:00+04:00"), "en",
+                null, null, null, null, null, null));
 
         assertThat(result.decision()).isNotNull();
         assertThat(result.modelCallCount()).isGreaterThanOrEqualTo(1);

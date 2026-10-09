@@ -17,12 +17,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.messages.Message;
-import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.ollama.api.OllamaChatOptions;
 import org.springframework.ai.ollama.api.ThinkOption;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 /**
@@ -41,12 +43,14 @@ import org.springframework.stereotype.Component;
  * and schemas that support it; otherwise Ollama rejects the request with a grammar-parse error.</p>
  */
 @Component
+@Qualifier("rawExtractionModel")
+@ConditionalOnProperty(name = "application.extraction.provider", havingValue = "ollama")
 public class SpringAiOllamaStructuredWildlifeExtractionModel implements StructuredWildlifeExtractionModel {
 
     private static final Logger log = LoggerFactory.getLogger(SpringAiOllamaStructuredWildlifeExtractionModel.class);
     private static final String PROVIDER = "ollama";
 
-    private final ChatModel chatModel;
+    private final OllamaChatModel chatModel;
     private final OllamaExtractionPromptFactory promptFactory;
     private final ObjectMapper extractionObjectMapper;
     private final ExtractionProperties properties;
@@ -55,7 +59,7 @@ public class SpringAiOllamaStructuredWildlifeExtractionModel implements Structur
     private final String chatModelName;
 
     public SpringAiOllamaStructuredWildlifeExtractionModel(
-            ChatModel chatModel,
+            OllamaChatModel chatModel,
             OllamaExtractionPromptFactory promptFactory,
             ObjectMapper extractionObjectMapper,
             ExtractionProperties properties,

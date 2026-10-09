@@ -1,0 +1,8 @@
+package com.acn.wildlifeextractor.domain.enums;
+
+public enum FeederLocation {
+    NA, OTHER, MAIN_AVIARY, PINK_PIGEON_FEEDERS, SMALL_AVIARY,
+    FS1, FS2, FS3, FS4, FS5, FS6, FS7, FS8, FS9, FS10, FS11,
+    FS12, FS13, FS14, FS15, FS16, FS17, FS18, FS19, FS20, FS21, FS22,
+    HOPPER, BEL_OMBRE, FERNEY, CAMP, MARE_LONGUE, PLATEAU_TODD, BRISE_FER
+}

@@ -1,8 +1,12 @@
-﻿# Controlled vocabulary: Condition
+# Controlled vocabulary: Condition
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Condition
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - GOOD
+  - MEDIUM
+  - POOR
+  - NA
 aliases: {}

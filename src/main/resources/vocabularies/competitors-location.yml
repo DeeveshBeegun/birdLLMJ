@@ -1,8 +1,32 @@
-﻿# Controlled vocabulary: CompetitorsLocation
+# Controlled vocabulary: CompetitorsLocation
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: CompetitorsLocation
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NA
+  - TRACES_IN_NEST
+  - IN_NEST
+  - LESS_THAN_1M_OF_NEST
+  - LESS_THAN_5M_OF_NEST
+  - FROM_5_TO_10M_OF_NEST
+  - FROM_10M_PLUS_OF_NEST
+  - ON_BOX_NEAR_CAVITY
+  - ON_NEST_TREE
+  - IN_CLEARING
+  - OUTSIDE_CLEARING
+  - OTHER
+aliases:
+  "traces in nest": TRACES_IN_NEST
+  "in nest": IN_NEST
+  "less than 1m of nest": LESS_THAN_1M_OF_NEST
+  "less than 5m of nest": LESS_THAN_5M_OF_NEST
+  "5 to 10m of nest": FROM_5_TO_10M_OF_NEST
+  "from 5 to 10m": FROM_5_TO_10M_OF_NEST
+  "10m plus of nest": FROM_10M_PLUS_OF_NEST
+  "more than 10m": FROM_10M_PLUS_OF_NEST
+  "on box near cavity": ON_BOX_NEAR_CAVITY
+  "on nest tree": ON_NEST_TREE
+  "in clearing": IN_CLEARING
+  "outside clearing": OUTSIDE_CLEARING

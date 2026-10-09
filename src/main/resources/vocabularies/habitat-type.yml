@@ -1,8 +1,24 @@
-﻿# Controlled vocabulary: HabitatType
+# Controlled vocabulary: HabitatType
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: HabitatType
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - COASTAL
+  - T1
+  - T3
+  - CANOPY
+  - NATIVE
+  - SEMI_INVADED
+  - INVADED
+  - GRASSLAND
+  - RAVENALA_FOREST
+  - FOREST_PLANTATION
+  - AGRICULTURAL
+  - RESIDENTIAL_AREA
+aliases:
+  "semi invaded": SEMI_INVADED
+  "ravenala forest": RAVENALA_FOREST
+  "forest plantation": FOREST_PLANTATION
+  "residential area": RESIDENTIAL_AREA

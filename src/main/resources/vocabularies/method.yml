@@ -1,8 +1,15 @@
-﻿# Controlled vocabulary: Method
+# Controlled vocabulary: Method
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Method
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - GLEANING
+  - SALLYING
+  - FLYCATCHING
+  - PROBING
+  - PECKING
+  - DRINKING
+  - UNKNOWN
 aliases: {}

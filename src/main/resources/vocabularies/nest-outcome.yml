@@ -1,8 +1,18 @@
-﻿# Controlled vocabulary: NestOutcome
+# Controlled vocabulary: NestOutcome
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: NestOutcome
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - UNK
+  - NA
+  - ONGOING
+  - ABANDONED
+  - FAILED_DURING_INCUBATION
+  - FAILED_DURING_BROOD
+  - FLEDGED
+aliases:
+  "unknown": UNK
+  "failed during incubation": FAILED_DURING_INCUBATION
+  "failed during brood": FAILED_DURING_BROOD

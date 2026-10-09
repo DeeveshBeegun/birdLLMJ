@@ -1,8 +1,39 @@
-﻿# Controlled vocabulary: SpeciesEcho
+# Controlled vocabulary: SpeciesEcho
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: SpeciesEcho
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - ANTS
+  - ECHO_PARAKEET
+  - HONEY_BEE
+  - INDIAN_MYNAH
+  - INDIAN_WOLF_SNAKE
+  - LONG_TAILED_MACAQUE
+  - MAURITIUS_BULBUL
+  - MAURITIUS_KRESTEL
+  - PAPER_WASP
+  - RAT
+  - RAT_BLACK
+  - RAT_BROWN
+  - RING_NECKED_PARAKEET
+  - SMALL_INDIAN_MONGOOSE
+  - WHITE_TAILED_TROPIC_BIRD
+  - OTHER
+aliases:
+  "echo parakeet": ECHO_PARAKEET
+  "honey bee": HONEY_BEE
+  "indian mynah": INDIAN_MYNAH
+  "indian wolf snake": INDIAN_WOLF_SNAKE
+  "long tailed macaque": LONG_TAILED_MACAQUE
+  "mauritius bulbul": MAURITIUS_BULBUL
+  "mauritius kestrel": MAURITIUS_KRESTEL
+  "paper wasp": PAPER_WASP
+  "black rat": RAT_BLACK
+  "brown rat": RAT_BROWN
+  "ring necked parakeet": RING_NECKED_PARAKEET
+  "small indian mongoose": SMALL_INDIAN_MONGOOSE
+  "mongoose": SMALL_INDIAN_MONGOOSE
+  "white tailed tropic bird": WHITE_TAILED_TROPIC_BIRD
+  "macaque": LONG_TAILED_MACAQUE

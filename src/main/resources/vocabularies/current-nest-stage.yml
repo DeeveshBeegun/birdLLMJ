@@ -1,8 +1,23 @@
-﻿# Controlled vocabulary: CurrentNestStage
+# Controlled vocabulary: CurrentNestStage
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: CurrentNestStage
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - UNK
+  - NA
+  - NEST_BUILDING
+  - EARLY_NEST_BUILDING
+  - LATE_NEST_BUILDING
+  - EGG
+  - CHICK
+  - FLEDGED
+  - FAILED
+  - ABANDONED
+  - FLEDGLING
+aliases:
+  "unknown": UNK
+  "nest building": NEST_BUILDING
+  "early nest building": EARLY_NEST_BUILDING
+  "late nest building": LATE_NEST_BUILDING

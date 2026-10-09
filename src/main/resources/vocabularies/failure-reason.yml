@@ -1,8 +1,20 @@
-﻿# Controlled vocabulary: FailureReason
+# Controlled vocabulary: FailureReason
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: FailureReason
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - PREDATED
+  - MITES
+  - FLY_LARVAE
+  - FELL_FROM_NEST
+  - COMPETITORS
+  - UN_INCUBATED
+  - STARVATION
+  - OTHER
+aliases:
+  "fly larvae": FLY_LARVAE
+  "fell from nest": FELL_FROM_NEST
+  "un incubated": UN_INCUBATED
+  "not incubated": UN_INCUBATED

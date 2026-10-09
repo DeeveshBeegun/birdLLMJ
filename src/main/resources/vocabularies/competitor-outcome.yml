@@ -1,8 +1,15 @@
-﻿# Controlled vocabulary: CompetitorOutcome
+# Controlled vocabulary: CompetitorOutcome
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: CompetitorOutcome
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - ONGOING
+  - FLEDGED
+  - FAILED_EGG_STAGE
+  - FAILED_CHICK_STAGE
+  - UNKNOWN
+aliases:
+  "failed egg stage": FAILED_EGG_STAGE
+  "failed chick stage": FAILED_CHICK_STAGE

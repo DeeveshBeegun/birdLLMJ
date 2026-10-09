@@ -1,8 +1,17 @@
-﻿# Controlled vocabulary: BreedingStatus
+# Controlled vocabulary: BreedingStatus
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: BreedingStatus
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - SINGLE_BIRD
+  - BREEDING
+  - SUSPECTED_BREEDING_BIRD
+  - NA
+  - UNK
+aliases:
+  "single bird": SINGLE_BIRD
+  "suspected breeding": SUSPECTED_BREEDING_BIRD
+  "suspected breeding bird": SUSPECTED_BREEDING_BIRD
+  "unknown": UNK

@@ -1,8 +1,20 @@
-﻿# Controlled vocabulary: Management
+# Controlled vocabulary: Management
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Management
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NONE
+  - NO_ACCESS_AND_NO_CARBARYL
+  - ACCESS_AND_CARBARYL
+  - ACCESS_AND_NO_CARBARYL
+  - PREDATOR_CONTROL
+  - COMPETITOR_CONTROL
+  - OTHER
+aliases:
+  "no access and no carbaryl": NO_ACCESS_AND_NO_CARBARYL
+  "access and carbaryl": ACCESS_AND_CARBARYL
+  "access and no carbaryl": ACCESS_AND_NO_CARBARYL
+  "predator control": PREDATOR_CONTROL
+  "competitor control": COMPETITOR_CONTROL

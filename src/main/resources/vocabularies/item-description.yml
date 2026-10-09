@@ -1,8 +1,87 @@
-﻿# Controlled vocabulary: ItemDescription
+# Controlled vocabulary: ItemDescription
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: ItemDescription
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - UNK
+  - NECTAR
+  - FLOWER
+  - FLOWER_BUD
+  - YOUNG_LEAF
+  - LEAF
+  - DEAD_LEAF
+  - FRUIT
+  - FRUIT_RIPE
+  - FRUIT_UNRIPE
+  - SEED
+  - STEM
+  - BARK
+  - PHELSUMA_SPP
+  - PHELSUMA_CEPEDIANA
+  - PHELSUMA_ORNATA
+  - PHELSUMA_GUMBEAUI
+  - PHELSUMA_ROSAGULARIS
+  - HOUSE_GECKO
+  - AGAMID_LIZARD
+  - GREY_WHITE_EYE
+  - MADAGASCAR_FODY
+  - RED_WHISKERED_BULBUL
+  - COMMON_WAXBILL
+  - ZEBRA_DOVE
+  - YELLOW_FRONTED_CANARY
+  - ASIAN_MUSK_SHREW
+  - BLACK_RAT
+  - BROWN_RAT
+  - ODONATA_DRAGONFLY
+  - PHASMATODEA_STICK_INSECT
+  - HEMIPTERA_CICADA
+  - OTHER
+  - HYMENOPTERA_ANT
+  - HYMENOPTERA_BEE
+  - COLEOPTERA_BEETLE
+  - HEMIPTERA_BUG
+  - LEPIDOPTERA_BUTTERFLY
+  - LEPIDOPTERA_CATERPILLAR
+  - BLATTODEA_COCKROACH
+  - ORTHOPTERA_CRICKET
+  - DIPTERA_FLY
+  - DIPTERA_LARVAE
+  - LEPIDOPTERA_MOTH
+  - MANTODEA_PRAYING_MANTIDS
+  - ARACHNIDS_SPIDER
+  - HYMENOPTERA_WASP
+aliases:
+  "flower bud": FLOWER_BUD
+  "young leaf": YOUNG_LEAF
+  "dead leaf": DEAD_LEAF
+  "fruit ripe": FRUIT_RIPE
+  "fruit unripe": FRUIT_UNRIPE
+  "house gecko": HOUSE_GECKO
+  "agamid lizard": AGAMID_LIZARD
+  "grey white eye": GREY_WHITE_EYE
+  "madagascar fody": MADAGASCAR_FODY
+  "red whiskered bulbul": RED_WHISKERED_BULBUL
+  "common waxbill": COMMON_WAXBILL
+  "zebra dove": ZEBRA_DOVE
+  "yellow fronted canary": YELLOW_FRONTED_CANARY
+  "asian musk shrew": ASIAN_MUSK_SHREW
+  "black rat": BLACK_RAT
+  "brown rat": BROWN_RAT
+  "dragonfly": ODONATA_DRAGONFLY
+  "stick insect": PHASMATODEA_STICK_INSECT
+  "cicada": HEMIPTERA_CICADA
+  "ant": HYMENOPTERA_ANT
+  "bee": HYMENOPTERA_BEE
+  "beetle": COLEOPTERA_BEETLE
+  "butterfly": LEPIDOPTERA_BUTTERFLY
+  "caterpillar": LEPIDOPTERA_CATERPILLAR
+  "cockroach": BLATTODEA_COCKROACH
+  "cricket": ORTHOPTERA_CRICKET
+  "fly": DIPTERA_FLY
+  "moth": LEPIDOPTERA_MOTH
+  "praying mantis": MANTODEA_PRAYING_MANTIDS
+  "spider": ARACHNIDS_SPIDER
+  "wasp": HYMENOPTERA_WASP
+  "unknown": UNK

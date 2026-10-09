@@ -1,8 +1,21 @@
-﻿# Controlled vocabulary: SampleCollected
+# Controlled vocabulary: SampleCollected
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: SampleCollected
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NO
+  - NA
+  - BLOOD
+  - FEATHER
+  - NAIL
+  - FEACAL
+  - SALIVA
+  - PARASITE
+  - OTHER
+  - DEAD_CHICK
+aliases:
+  "dead chick": DEAD_CHICK
+  "faecal": FEACAL
+  "fecal": FEACAL

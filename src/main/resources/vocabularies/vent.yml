@@ -1,8 +1,13 @@
-﻿# Controlled vocabulary: Vent
+# Controlled vocabulary: Vent
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Vent
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NA
+  - UNK
+  - CLEAN
+  - DIRTY
+aliases:
+  "unknown": UNK

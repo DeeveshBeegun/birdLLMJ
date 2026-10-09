@@ -18,11 +18,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.messages.AssistantMessage;
-import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.model.Generation;
 import org.springframework.ai.chat.metadata.ChatResponseMetadata;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.ollama.OllamaChatModel;
 
 /**
  * Verifies that the Ollama adapter never logs sensitive content: transcript text, coordinates,
@@ -35,7 +35,7 @@ class SecurityLoggingTest {
 
     @Test
     void adapterDoesNotLogSensitiveContent() {
-        ChatModel chatModel = mock(ChatModel.class);
+        OllamaChatModel chatModel = mock(OllamaChatModel.class);
         when(chatModel.call(any(Prompt.class))).thenReturn(new ChatResponse(
                 List.of(new Generation(new AssistantMessage("{\"schemaVersion\":\"sighting-v1\"}"))),
                 ChatResponseMetadata.builder().model("llama3.1:8b").build()));

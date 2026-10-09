@@ -1,8 +1,279 @@
-﻿# Controlled vocabulary: NestSiteLaid
+# Controlled vocabulary: NestSiteLaid
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
+# Values use human-readable labels (as spoken/extracted) mapped from midas-backend NestSiteLaid enum.
 name: NestSiteLaid
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - NA
+  - OTHER
+  - Bambous Virieux 3
+  - Camizard Charizard Cliff
+  - Champagne Cliff
+  - Chimney Cliff
+  - Domaine de l'Etoile 2
+  - Domaine de l'Etoile 3
+  - Domaine de l'Etoile 4
+  - Domaine de l'Etoile 5
+  - Domaine de l'Etoile 8
+  - Domaine de l'Etoile 9
+  - Domaine du Chasseur 5
+  - Domaine du Chasseur 7
+  - Domaine du Chasseur 8
+  - Domaine du Chasseur Cabin
+  - Domaine du Chasseur Car Park
+  - Domaine du Chasseur Office
+  - Domaine du Chasseur Plastic
+  - East Rock
+  - Ferney 1
+  - Ferney 10
+  - Ferney 11
+  - Ferney 12
+  - Ferney 13
+  - Ferney 14
+  - Ferney 2A
+  - Ferney 2C
+  - Ferney 3
+  - Ferney 4
+  - Ferney 5
+  - Ferney 6
+  - Ferney 7
+  - Ferney 8
+  - Ferney 9
+  - Ferney Cliff
+  - Ferney Dupont
+  - Ferney Enclosure
+  - Ferney Ingam
+  - Ferney Middle
+  - Ferney Reduit
+  - Le Vallon 13
+  - Le Vallon 6
+  - Mauritania
+  - Mount Camizard 1A
+  - Mount Camizard 2A
+  - Mount Camizard 2B
+  - Mount Camizard 4
+  - Mount Camizard 5
+  - New Hope
+  - Owen's House
+  - Petit Fond 1
+  - Petit Fond 2
+  - Petit Parc
+  - Power Station Cliff
+  - Riche en Eau 11
+  - Riche en Eau 13
+  - Riche en Eau 2
+  - Riche en Eau 3
+  - Riche en Eau 4
+  - Riche en Eau 9
+  - Undetected
+  - Vallee de L'est
+  - Ylang Chasse
+  - Ylang Forest
+  - Isendgaard
+  - Dragons View
+  - Koala Cliff
+  - Copshop Cliff
+  - Cat and Mouse
+  - Aarhus
+  - Above High Spy
+  - Above Smell The Roses
+  - Adventure Time
+  - Alabama
+  - Anzac Point
+  - Aotearoa
+  - Aquarium
+  - Ashdown
+  - Aurelies Tree
+  - Babadook
+  - Ballgame Cavity
+  - Basic Instinct
+  - Benderloch
+  - Bermuda
+  - Beyond Hippolite
+  - Beyond Lorien
+  - Beyond the wall
+  - Bikini Bottom
+  - Bingen
+  - Black Magic
+  - Bobby Robson
+  - Boduan
+  - Boulder
+  - Bouley Bay
+  - Brave New World
+  - Brave Skinner
+  - Breakfast
+  - Broken Drill Bits
+  - Cake Hole
+  - Carambola
+  - Cascade
+  - Cerebro
+  - Chandra
+  - Chieu Hoi
+  - Chima
+  - Cool Runnings
+  - Crackhammer
+  - Crimson Peak
+  - Crispy Branches
+  - Cupids Heaven
+  - Cutlers Cove
+  - Devils Hole
+  - Dont Touch
+  - Dr.Vaughans
+  - Dragonfly
+  - Epiphyte Cavity
+  - Equivalent Trade
+  - Eucalyptus
+  - Fatal Attraction
+  - Fixon
+  - Frenchman
+  - Fromage
+  - Galapagos
+  - Gallery
+  - GMEB
+  - Gondwanaland
+  - Greenhouse Box
+  - Gypsy Wood
+  - Hail to the cat
+  - Half Mast
+  - Hawaii 5-0
+  - Hebron
+  - Hemlock Grove
+  - Henrietta
+  - Hillsborough Happiness
+  - Hippolite
+  - Hopeless Cause
+  - Hungry Hippo
+  - Indecent Proposal
+  - Indigo
+  - Jas Wonky
+  - Jungle Boogie
+  - Jurassic Park
+  - Kames Lookout
+  - Kanuka
+  - Kremlin
+  - La Caverne
+  - La Meteo
+  - Land Ho
+  - Letoca
+  - Lochness
+  - Longdrop
+  - Los Angeles
+  - Machu Pichu
+  - Magic Far Away Tree
+  - Maracana
+  - Mardi Gras
+  - Marios Cavity
+  - Maze of Regrets
+  - Megatron
+  - Midgaard
+  - Mint
+  - Mirador
+  - Molloccus
+  - Moonshine
+  - Morning Glory
+  - Moscow
+  - Mosque
+  - Mosquito
+  - Mystic Falls
+  - Nairobi
+  - Nazca
+  - Neverland
+  - Niagara
+  - Nid dabeilles
+  - Obvious
+  - Old Mans Beard
+  - Olympus
+  - Optimistic
+  - Oval Office
+  - Pallet Town
+  - Palmerstone Fort
+  - Paris
+  - Patches
+  - Patrax
+  - Phoenix
+  - Pigeon Boys
+  - Pineapple Lady
+  - Planet Express
+  - Pluto
+  - Prairie fire
+  - Pretty Silly
+  - Pride Rock
+  - Pteropus
+  - PWAP
+  - Quantok
+  - Quinine
+  - Raupo
+  - Reborn
+  - Red Square
+  - Ridiculous
+  - Robby Bobson
+  - Rockfield
+  - Romancing the Stone
+  - Sanzu
+  - Sapphire
+  - Sexy
+  - Silmarillion
+  - Simmern
+  - Skyfall
+  - Sleep and Eat
+  - Sleepy Hollow
+  - Slippy Soos
+  - Smell the Roses box
+  - Snake Mountain
+  - Soutif
+  - Springfield
+  - Square Root
+  - St. Francois
+  - St. Ouen
+  - Startaker
+  - Sulley
+  - Sunset Boulevard
+  - Suzy Wongs
+  - Swings and Roundabouts
+  - Tamarin Bay
+  - Tangled
+  - Tauronga
+  - The Globe
+  - The Library
+  - The Mighty Fax
+  - Timbuktu
+  - Titicaca
+  - Towards Black River Peak
+  - Towards Brise Fer Peak
+  - Trebor
+  - Tree Detective
+  - Tree of Power
+  - Treemendous
+  - Trinity Arms
+  - Trios sisters
+  - Tripoli
+  - Troy
+  - Tutankhamun
+  - Two Brothers
+  - Unintended
+  - Vanoushas cavity
+  - Vesuvius
+  - Wasperer
+  - Watch Tree
+  - Wee Mad
+  - Western Front
+  - Whare
+  - Windfall
+  - Wrestlemania
+  - Abyss
+  - Bloodmoon
+  - Checkmate
+  - Dead End
+  - Flycatcher
+  - Gold Mine
+  - Hunting Time
+  - Iron Cobra
+  - Liberty
+  - Pioneer
+  - RNP box
+  - RNP cavity
+  - Serenity
+  - Unity
 aliases: {}

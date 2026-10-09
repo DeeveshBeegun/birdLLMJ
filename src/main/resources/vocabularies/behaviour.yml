@@ -1,8 +1,23 @@
-﻿# Controlled vocabulary: Behaviour
+# Controlled vocabulary: Behaviour
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Behaviour
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NA
+  - UNK
+  - ALONE_NO_BREEDING_BEHAVIOUR
+  - ALONE_BREEDING_BEHAVIOUR
+  - WITH_ANOTHER_BIRD_NO_BREEDING_BEHAVIOUR
+  - WITH_ANOTHER_BIRD_BREEDING_BEHAVIOUR
+  - PARENT_OFFSPRING_INTERACTIONS
+  - INTERACTING_WITH_OFFSPRING
+  - OTHER
+aliases:
+  "alone no breeding": ALONE_NO_BREEDING_BEHAVIOUR
+  "alone breeding": ALONE_BREEDING_BEHAVIOUR
+  "with another bird no breeding": WITH_ANOTHER_BIRD_NO_BREEDING_BEHAVIOUR
+  "with another bird breeding": WITH_ANOTHER_BIRD_BREEDING_BEHAVIOUR
+  "parent offspring interactions": PARENT_OFFSPRING_INTERACTIONS
+  "interacting with offspring": INTERACTING_WITH_OFFSPRING

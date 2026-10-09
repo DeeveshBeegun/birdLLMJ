@@ -1,8 +1,11 @@
-﻿# Controlled vocabulary: Gape
+# Controlled vocabulary: Gape
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Gape
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - NA
+  - NORMAL
+  - CHEESY
 aliases: {}

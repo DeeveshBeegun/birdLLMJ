@@ -1,6 +1,9 @@
 package com.acn.wildlifeextractor.application.confirmation;
 
+import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +36,13 @@ public record StoredExtraction(
         String transcriptFingerprint,
         Instant createdAt,
         Instant confirmedAt,
-        boolean confirmed
+        boolean confirmed,
+        String userId,
+        LocalTime time,
+        LocalDate date,
+        BigDecimal latitude,
+        BigDecimal longitude,
+        String subPopulation
 ) {
     public StoredExtraction {
         missingRequiredFields = List.copyOf(missingRequiredFields);
@@ -49,6 +58,6 @@ public record StoredExtraction(
                 decision, validatedFields, missingRequiredFields, ambiguousFields, invalidFields,
                 unresolvedReferences, warnings, safeModelMetadata, modelName, modelCallCount,
                 correctionAttemptCount, infrastructureRetryCount, transcriptFingerprint, createdAt,
-                confirmedAt, true);
+                confirmedAt, true, userId, time, date, latitude, longitude, subPopulation);
     }
 }

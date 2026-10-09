@@ -1,0 +1,7 @@
+package com.acn.wildlifeextractor.domain.enums;
+
+public enum CompetitorBehaviour {
+    NA, NO_INTERACTION, INTERACTING_WITH_FODY, CALLING_AT_SPECIES_OF_INTEREST,
+    TRYING_TO_ENTER_NEST, USING_THE_NEST, OTHER, CHASING_SPECIES_OF_INTEREST,
+    FIGHTING_SPECIES_OF_INTEREST
+}

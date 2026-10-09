@@ -1,8 +1,18 @@
-﻿# Controlled vocabulary: ClutchNumber
+# Controlled vocabulary: ClutchNumber
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: ClutchNumber
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NA
+  - UNK
+  - FIRST
+  - SECOND
+  - OTHER
+aliases:
+  "1": FIRST
+  "2": SECOND
+  "first clutch": FIRST
+  "second clutch": SECOND
+  "unknown": UNK

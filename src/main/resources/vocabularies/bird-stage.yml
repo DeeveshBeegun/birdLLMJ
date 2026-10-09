@@ -1,8 +1,15 @@
-﻿# Controlled vocabulary: BirdStage
+# Controlled vocabulary: BirdStage
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: BirdStage
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - UNK
+  - CHICK
+  - FLEDGLING
+  - JUVENILE
+  - ADULT
+aliases:
+  "unknown": UNK
+  "fledge": FLEDGLING

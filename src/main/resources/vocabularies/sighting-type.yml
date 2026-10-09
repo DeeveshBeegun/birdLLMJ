@@ -1,8 +1,14 @@
-﻿# Controlled vocabulary: SightingType
+# Controlled vocabulary: SightingType
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: SightingType
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - AT_FEEDERS
+  - IN_FIELD
+  - DEAD_BIRD
+aliases:
+  "at feeders": AT_FEEDERS
+  "in field": IN_FIELD
+  "dead bird": DEAD_BIRD

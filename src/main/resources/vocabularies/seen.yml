@@ -1,8 +1,13 @@
-﻿# Controlled vocabulary: Seen
+# Controlled vocabulary: Seen
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Seen
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - YES
+  - NO
+  - HEARD_ONLY
+aliases:
+  "heard only": HEARD_ONLY
+  "heard": HEARD_ONLY

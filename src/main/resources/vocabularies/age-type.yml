@@ -1,8 +1,11 @@
-﻿# Controlled vocabulary: AgeType
+# Controlled vocabulary: AgeType
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: AgeType
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - DAYS
+  - MONTHS
+  - YEARS
 aliases: {}

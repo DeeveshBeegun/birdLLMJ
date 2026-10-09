@@ -1,5 +1,6 @@
 package com.acn.wildlifeextractor.application.extraction;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.Map;
 
 import com.acn.wildlifeextractor.application.confirmation.ExtractionRepository;
 import com.acn.wildlifeextractor.application.confirmation.StoredExtraction;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.acn.wildlifeextractor.application.error.ExtractionConfirmationException;
 import com.acn.wildlifeextractor.application.error.ExtractionNotFoundException;
 import com.acn.wildlifeextractor.application.error.IdempotencyConflictException;
@@ -132,6 +135,7 @@ public class WildlifeExtractionService {
 
         ValidationOutcome first = tryValidate(definition, raw.content(), command.transcript());
         if (first.success()) {
+            applyCoordinateOverrides(first.validated().validatedFields(), command.latitude(), command.longitude());
             return toStored(command, definition, fingerprint, raw, first.validated(), 1, 0);
         }
         if (properties.maximumCorrectionAttempts() <= 0) {
@@ -149,6 +153,7 @@ public class WildlifeExtractionService {
 
         ValidationOutcome second = tryValidate(definition, corrected.content(), command.transcript());
         if (second.success()) {
+            applyCoordinateOverrides(second.validated().validatedFields(), command.latitude(), command.longitude());
             return toStored(command, definition, fingerprint, corrected, second.validated(), 2, 1);
         }
         return toRejected(command, definition, fingerprint, corrected.model(), corrected.safeMetadata(), 2, 1);
@@ -177,7 +182,9 @@ public class WildlifeExtractionService {
                 validated.validatedFields(), validated.missingRequiredFields(), validated.ambiguousFields(),
                 validated.invalidFields(), validated.unresolvedReferences(), validated.warnings(),
                 raw.safeMetadata(), raw.model(), modelCallCount, correctionAttempts, 0, fingerprint,
-                Instant.now(), null, false);
+                Instant.now(), null, false,
+                command.userId(), command.time(), command.date(),
+                command.latitude(), command.longitude(), command.subPopulation());
     }
 
     private StoredExtraction toRejected(ExtractionCommand command, WildlifeFormDefinition<?> definition,
@@ -187,7 +194,31 @@ public class WildlifeExtractionService {
                 definition.schemaVersion(), definition.promptVersion(), ExtractionDecision.REJECT,
                 objectMapper.createObjectNode(), List.of(), List.of(), List.of(), List.of(),
                 List.of("Model output rejected"), metadata, modelName,
-                modelCallCount, correctionAttempts, 0, fingerprint, Instant.now(), null, false);
+                modelCallCount, correctionAttempts, 0, fingerprint, Instant.now(), null, false,
+                command.userId(), command.time(), command.date(),
+                command.latitude(), command.longitude(), command.subPopulation());
+    }
+
+    private void applyCoordinateOverrides(JsonNode fields, BigDecimal latitude, BigDecimal longitude) {
+        if (!(fields instanceof ObjectNode objectNode)) {
+            return;
+        }
+        if (latitude != null) {
+            overrideDecimalField(objectNode, "latitude", latitude);
+        }
+        if (longitude != null) {
+            overrideDecimalField(objectNode, "longitude", longitude);
+        }
+    }
+
+    private void overrideDecimalField(ObjectNode fields, String fieldName, BigDecimal value) {
+        JsonNode existing = fields.get(fieldName);
+        if (existing instanceof ObjectNode fieldNode) {
+            fieldNode.put("normalizedValue", value);
+            fieldNode.put("rawValue", value.toPlainString() + " [overridden by request]");
+            fieldNode.put("status", "PRESENT");
+            fieldNode.putArray("warnings");
+        }
     }
 
     /** Internal result of a validation attempt within the correction flow. */

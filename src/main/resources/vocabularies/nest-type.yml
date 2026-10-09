@@ -1,8 +1,23 @@
-﻿# Controlled vocabulary: NestType
+# Controlled vocabulary: NestType
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: NestType
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - EP_PVC_BOX
+  - TREE_CAVITY
+  - MK_WOOD_BOX
+  - MK_WOOD_BOX_SHORT
+  - MK_WHITE_RP_BOX
+  - MK_WHITE_RP_BOX_SHORT
+  - MK_BLACK_RP_BOX
+  - MK_PVC_BOX
+  - CLIFF_CAVITY
+  - OTHER
+aliases:
+  "tree cavity": TREE_CAVITY
+  "cliff cavity": CLIFF_CAVITY
+  "ep pvc box": EP_PVC_BOX
+  "mk wood box": MK_WOOD_BOX
+  "mk pvc box": MK_PVC_BOX

@@ -1,5 +1,14 @@
 package com.acn.wildlifeextractor.domain.extraction;
 
+import com.acn.wildlifeextractor.domain.enums.AgeType;
+import com.acn.wildlifeextractor.domain.enums.BirdSex;
+import com.acn.wildlifeextractor.domain.enums.BirdStage;
+import com.acn.wildlifeextractor.domain.enums.CaptureMethod;
+import com.acn.wildlifeextractor.domain.enums.NestSiteLaid;
+import com.acn.wildlifeextractor.domain.enums.RearingType;
+import com.acn.wildlifeextractor.domain.enums.Ring;
+import com.acn.wildlifeextractor.domain.enums.SampleCollected;
+import com.acn.wildlifeextractor.domain.enums.SubPopulation;
 import com.acn.wildlifeextractor.domain.field.ExtractedCode;
 import com.acn.wildlifeextractor.domain.field.ExtractedCodeList;
 import com.acn.wildlifeextractor.domain.field.ExtractedDate;
@@ -24,23 +33,23 @@ public record RingingMorphsExtractionFields(
         ExtractedDate releasedDate,
         ExtractedTime observedTime,
         ExtractedReference species,
-        ExtractedCode subPopulation,
+        ExtractedCode<SubPopulation> subPopulation,
         ExtractedReference observer,
         ExtractedReference ringer,
         ExtractedTime startTime,
         ExtractedTime endTime,
         ExtractedString birdName,
         ExtractedString birdID,
-        ExtractedCode lowerLeftRingNumber,
-        ExtractedCode lowerRightRingNumber,
-        ExtractedCode upperLeftRingNumber,
-        ExtractedCode upperRightRingNumber,
-        ExtractedCode leftLeg,
-        ExtractedCode rightLeg,
-        ExtractedCode birdSex,
-        ExtractedCode birdStage,
+        ExtractedCode<Ring> lowerLeftRingNumber,
+        ExtractedCode<Ring> lowerRightRingNumber,
+        ExtractedCode<Ring> upperLeftRingNumber,
+        ExtractedCode<Ring> upperRightRingNumber,
+        ExtractedCode<Ring> leftLeg,
+        ExtractedCode<Ring> rightLeg,
+        ExtractedCode<BirdSex> birdSex,
+        ExtractedCode<BirdStage> birdStage,
         ExtractedInteger apparentAge,
-        ExtractedCode ageType,
+        ExtractedCode<AgeType> ageType,
         ExtractedInteger weight,
         ExtractedInteger tail,
         ExtractedInteger tailBrush,
@@ -57,13 +66,13 @@ public record RingingMorphsExtractionFields(
         ExtractedString nestReference,
         ExtractedString idMale,
         ExtractedString idFemale,
-        ExtractedCode rearingType,
-        ExtractedCode whereLaid,
-        ExtractedCode whereFledged,
-        ExtractedCode whereReleased,
-        ExtractedCode whereNow,
-        ExtractedCode captureMethod,
-        ExtractedCodeList sampleCollected,
+        ExtractedCode<RearingType> rearingType,
+        ExtractedCode<NestSiteLaid> whereLaid,
+        ExtractedCode<NestSiteLaid> whereFledged,
+        ExtractedCode<NestSiteLaid> whereReleased,
+        ExtractedCode<NestSiteLaid> whereNow,
+        ExtractedCode<CaptureMethod> captureMethod,
+        ExtractedCodeList<SampleCollected> sampleCollected,
         RingingMorphsLegacy legacy
 ) {
 }

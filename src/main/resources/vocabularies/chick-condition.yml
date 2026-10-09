@@ -1,8 +1,14 @@
-﻿# Controlled vocabulary: ChickCondition
+# Controlled vocabulary: ChickCondition
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: ChickCondition
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - GOOD
+  - MEDIUM
+  - BAD
+  - NA
+  - UNK
+aliases:
+  "unknown": UNK

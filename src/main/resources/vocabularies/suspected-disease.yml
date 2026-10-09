@@ -1,8 +1,15 @@
-﻿# Controlled vocabulary: SuspectedDisease
+# Controlled vocabulary: SuspectedDisease
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: SuspectedDisease
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - TRICHOMONIASIS
+  - AVIAN_POX
+  - PBFD
+  - OTHER
+  - UNK
+aliases:
+  "avian pox": AVIAN_POX
+  "unknown": UNK

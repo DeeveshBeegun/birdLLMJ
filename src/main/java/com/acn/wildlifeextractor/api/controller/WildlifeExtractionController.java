@@ -35,7 +35,9 @@ public class WildlifeExtractionController {
     @PostMapping
     public ResponseEntity<ExtractionResponse> extract(@Valid @RequestBody ExtractionRequest request) {
         ExtractionCommand command = new ExtractionCommand(request.requestId(), request.conversationId(),
-                request.formType(), request.transcript(), request.transcriptTimestamp(), request.language());
+                request.formType(), request.transcript(), request.transcriptTimestamp(), request.language(),
+                request.userId(), request.time(), request.date(),
+                request.latitude(), request.longitude(), request.subPopulation());
         return ResponseEntity.ok(toResponse(extractionService.extract(command)));
     }
 
@@ -54,6 +56,8 @@ public class WildlifeExtractionController {
                 stored.promptVersion(), stored.decision(), validatedFields, stored.missingRequiredFields(),
                 stored.ambiguousFields(), stored.invalidFields(), stored.unresolvedReferences(),
                 stored.warnings(), stored.safeModelMetadata(), stored.modelCallCount(),
-                stored.correctionAttemptCount(), stored.infrastructureRetryCount());
+                stored.correctionAttemptCount(), stored.infrastructureRetryCount(),
+                stored.userId(), stored.time(), stored.date(),
+                stored.latitude(), stored.longitude(), stored.subPopulation());
     }
 }

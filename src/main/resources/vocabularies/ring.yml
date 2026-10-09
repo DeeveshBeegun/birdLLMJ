@@ -1,8 +1,46 @@
-﻿# Controlled vocabulary: Ring
+# Controlled vocabulary: Ring
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Ring
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - UNK
+  - NA
+  - NO_RING
+  - ID
+  - BK
+  - BR
+  - CS
+  - DB
+  - DG
+  - GY
+  - LB
+  - LG
+  - MV
+  - OR
+  - PK
+  - PP
+  - RD
+  - WT
+  - YL
+aliases:
+  "no ring": NO_RING
+  "id number": ID
+  "unknown": UNK
+  "black": BK
+  "brown": BR
+  "cerise": CS
+  "dark blue": DB
+  "dark green": DG
+  "grey": GY
+  "gray": GY
+  "light blue": LB
+  "light green": LG
+  "mauve": MV
+  "orange": OR
+  "pink": PK
+  "purple": PP
+  "red": RD
+  "white": WT
+  "yellow": YL

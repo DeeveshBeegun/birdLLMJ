@@ -1,5 +1,8 @@
 package com.acn.wildlifeextractor.application.extraction;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 
 import com.acn.wildlifeextractor.domain.form.WildlifeFormType;
@@ -13,6 +16,12 @@ public record ExtractionCommand(
         WildlifeFormType formType,
         String transcript,
         OffsetDateTime transcriptTimestamp,
-        String language
+        String language,
+        String userId,
+        LocalTime time,
+        LocalDate date,
+        BigDecimal latitude,
+        BigDecimal longitude,
+        String subPopulation
 ) {
 }

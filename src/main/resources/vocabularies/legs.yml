@@ -1,8 +1,21 @@
-﻿# Controlled vocabulary: Legs
+# Controlled vocabulary: Legs
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Legs
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - BROWN_COLOUR_JUVENILE
+  - LIGHT_COLOR
+  - ADULT_COLOR
+  - ORANGE_COLOUR_FLEDGLING
+  - UNKNOWN
+aliases:
+  "brown colour juvenile": BROWN_COLOUR_JUVENILE
+  "brown juvenile": BROWN_COLOUR_JUVENILE
+  "light color": LIGHT_COLOR
+  "light colour": LIGHT_COLOR
+  "adult color": ADULT_COLOR
+  "adult colour": ADULT_COLOR
+  "orange colour fledgling": ORANGE_COLOUR_FLEDGLING
+  "orange fledgling": ORANGE_COLOUR_FLEDGLING

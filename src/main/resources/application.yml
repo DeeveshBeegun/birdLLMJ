@@ -18,12 +18,21 @@ spring:
     default-property-inclusion: always
 
   ai:
+    # OpenRouter — OpenAI-compatible cloud inference. Override via env vars for a different
+    # provider or model (OPENROUTER_API_KEY, OPENROUTER_MODEL, OPENROUTER_BASE_URL).
+    openai:
+      base-url: ${OPENROUTER_BASE_URL:https://openrouter.ai/api/v1}
+      api-key: ${OPENROUTER_API_KEY}
+      chat:
+        options:
+          model: ${OPENROUTER_MODEL:openai/gpt-4o-mini}
+          temperature: 0.0
     # Provider-native structured output (options.format) and thinking are set
     # programmatically per request in the Ollama adapter. These are startup defaults.
     ollama:
       # Defaults point at the Modal-hosted (GPU) Ollama; override with env vars for a local server,
       # e.g. OLLAMA_BASE_URL=http://localhost:11434.
-      base-url: ${OLLAMA_BASE_URL:https://deeveshbeegun--ollama-wildlife-serve.modal.run}
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
       init:
         pull-model-strategy: never
       chat:
@@ -44,7 +53,17 @@ server:
     max-http-form-post-size: 2MB
 
 application:
+  jev:
+    enabled: true
+    api-key: ${JEV_API_KEY:apikey_21948d1c3c72aa6a4ae5b8a0e531e331c602_7442c6a63bbb75862861faa8033c15edbfe4ec92b6eacce57b92b46f7ba8b58a}
+    endpoint: https://api.typesafe.ai/v1/systemone
+    model: jev-latest
+    confidence-threshold: 0.85
+    max-vocabulary-size: 50
+    timeout: 10s
   extraction:
+    # Active LLM adapter: "openai" (default, uses OpenRouter) or "ollama" (local server).
+    provider: ${EXTRACTION_PROVIDER:openai}
     maximum-transcript-length: 15000
     maximum-model-response-length: 100000
     maximum-correction-attempts: 1
@@ -71,7 +90,6 @@ application:
       num-predict: 2048
       # How long Ollama keeps the model resident between calls (avoids reload latency).
       keep-alive: 30m
-
 management:
   endpoints:
     web:

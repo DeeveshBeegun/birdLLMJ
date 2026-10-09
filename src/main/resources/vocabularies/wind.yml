@@ -1,8 +1,12 @@
-﻿# Controlled vocabulary: Wind
+# Controlled vocabulary: Wind
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Wind
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - NA
+  - CALM
+  - BREEZE
+  - WINDY
 aliases: {}

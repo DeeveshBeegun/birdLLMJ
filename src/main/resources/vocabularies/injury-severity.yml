@@ -1,8 +1,11 @@
-﻿# Controlled vocabulary: InjurySeverity
+# Controlled vocabulary: InjurySeverity
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: InjurySeverity
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - LOW
+  - MEDIUM
+  - HIGH
 aliases: {}

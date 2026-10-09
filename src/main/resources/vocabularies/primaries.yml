@@ -1,8 +1,13 @@
-﻿# Controlled vocabulary: Primaries
+# Controlled vocabulary: Primaries
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Primaries
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - ALL_PRESENT
+  - SOME_MISSING
+  - NA
+aliases:
+  "all present": ALL_PRESENT
+  "some missing": SOME_MISSING

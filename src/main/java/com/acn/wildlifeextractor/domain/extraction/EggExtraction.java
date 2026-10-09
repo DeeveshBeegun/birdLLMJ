@@ -1,5 +1,8 @@
 package com.acn.wildlifeextractor.domain.extraction;
 
+import com.acn.wildlifeextractor.domain.enums.EggOutcome;
+import com.acn.wildlifeextractor.domain.enums.EggStatus;
+import com.acn.wildlifeextractor.domain.enums.IndividualNumber;
 import com.acn.wildlifeextractor.domain.field.ExtractedBoolean;
 import com.acn.wildlifeextractor.domain.field.ExtractedCode;
 import com.acn.wildlifeextractor.domain.field.ExtractedDate;
@@ -12,11 +15,11 @@ import com.acn.wildlifeextractor.domain.field.ExtractedString;
  * @param legacy optional legacy section; {@code null} unless legacy fields are enabled
  */
 public record EggExtraction(
-        ExtractedCode individualNumber,
+        ExtractedCode<IndividualNumber> individualNumber,
         ExtractedBoolean photoMentioned,
         ExtractedString comments,
-        ExtractedCode fertility,
-        ExtractedCode status,
+        ExtractedCode<EggStatus> fertility,
+        ExtractedCode<EggOutcome> status,
         ExtractedDate dateLaid,
         EggExtractionLegacy legacy
 ) {

@@ -1,5 +1,14 @@
 package com.acn.wildlifeextractor.domain.extraction;
 
+import com.acn.wildlifeextractor.domain.enums.Action;
+import com.acn.wildlifeextractor.domain.enums.CompetitorBehaviour;
+import com.acn.wildlifeextractor.domain.enums.CompetitorOutcome;
+import com.acn.wildlifeextractor.domain.enums.CompetitorsLocation;
+import com.acn.wildlifeextractor.domain.enums.CurrentNestStage;
+import com.acn.wildlifeextractor.domain.enums.Impact;
+import com.acn.wildlifeextractor.domain.enums.Presence;
+import com.acn.wildlifeextractor.domain.enums.SpeciesEcho;
+import com.acn.wildlifeextractor.domain.enums.SubPopulation;
 import com.acn.wildlifeextractor.domain.field.ExtractedBoolean;
 import com.acn.wildlifeextractor.domain.field.ExtractedCode;
 import com.acn.wildlifeextractor.domain.field.ExtractedCodeList;
@@ -19,22 +28,22 @@ public record CompetitorsAndPredatorsExtractionFields(
         ExtractedString comment,
         ExtractedDate observedTime,
         ExtractedReference species,
-        ExtractedCode subPopulation,
+        ExtractedCode<SubPopulation> subPopulation,
         ExtractedBoolean isBirdAround,
-        ExtractedCode presence,
+        ExtractedCode<Presence> presence,
         ExtractedReference competitorSpecies,
-        ExtractedCode location,
-        ExtractedCode behaviour,
-        ExtractedCode currentNestStage,
-        ExtractedCode outcome,
+        ExtractedCode<CompetitorsLocation> location,
+        ExtractedCode<CompetitorBehaviour> behaviour,
+        ExtractedCode<CurrentNestStage> currentNestStage,
+        ExtractedCode<CompetitorOutcome> outcome,
         ExtractedString nestReference,
         ExtractedString nestSiteName,
         ExtractedInteger numOfCompetitor,
-        ExtractedCodeList impact,
-        ExtractedCodeList action,
+        ExtractedCodeList<Impact> impact,
+        ExtractedCodeList<Action> action,
         ExtractedDecimal distanceFromNest,
         ExtractedBoolean hasCompetitorInfo,
-        ExtractedCode speciesEcho,
+        ExtractedCode<SpeciesEcho> speciesEcho,
         ExtractedBoolean breedingAttempt
 ) {
 }

@@ -23,11 +23,11 @@ import org.mockito.ArgumentCaptor;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.MessageType;
-import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.model.Generation;
 import org.springframework.ai.chat.metadata.ChatResponseMetadata;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.ollama.api.OllamaChatOptions;
 
 class SpringAiOllamaStructuredWildlifeExtractionModelTest {
@@ -49,8 +49,8 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
                 SCHEMA);
     }
 
-    private ChatModel modelReturning(String content) {
-        ChatModel chatModel = mock(ChatModel.class);
+    private OllamaChatModel modelReturning(String content) {
+        OllamaChatModel chatModel = mock(OllamaChatModel.class);
         ChatResponse response = new ChatResponse(
                 List.of(new Generation(new AssistantMessage(content))),
                 ChatResponseMetadata.builder().model("llama3.1:8b").id("resp-1").build());
@@ -58,11 +58,11 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
         return chatModel;
     }
 
-    private SpringAiOllamaStructuredWildlifeExtractionModel adapter(ChatModel chatModel) {
+    private SpringAiOllamaStructuredWildlifeExtractionModel adapter(OllamaChatModel chatModel) {
         return adapter(chatModel, false);
     }
 
-    private SpringAiOllamaStructuredWildlifeExtractionModel adapter(ChatModel chatModel, boolean nativeSchemaFormat) {
+    private SpringAiOllamaStructuredWildlifeExtractionModel adapter(OllamaChatModel chatModel, boolean nativeSchemaFormat) {
         return new SpringAiOllamaStructuredWildlifeExtractionModel(
                 chatModel, promptFactory, mapper, TestProperties.defaults(),
                 new OllamaTuningProperties(nativeSchemaFormat, 8192, 2048, "30m"),
@@ -71,7 +71,7 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
 
     @Test
     void buildsSeparateSystemAndUserMessagesWithTranscriptDelimiters() {
-        ChatModel chatModel = modelReturning("{\"schemaVersion\":\"sighting-v1\"}");
+        OllamaChatModel chatModel = modelReturning("{\"schemaVersion\":\"sighting-v1\"}");
         adapter(chatModel).extract(request());
 
         ArgumentCaptor<Prompt> captor = ArgumentCaptor.forClass(Prompt.class);
@@ -95,7 +95,7 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
 
     @Test
     void defaultsToGrammarSchemaFormatWithTemperatureZeroThinkingDisabledAndNoTools() {
-        ChatModel chatModel = modelReturning("{}");
+        OllamaChatModel chatModel = modelReturning("{}");
         adapter(chatModel).extract(request());
 
         ArgumentCaptor<Prompt> captor = ArgumentCaptor.forClass(Prompt.class);
@@ -113,7 +113,7 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
 
     @Test
     void nativeSchemaFormatModeSendsTheFormSchemaAsFormat() {
-        ChatModel chatModel = modelReturning("{}");
+        OllamaChatModel chatModel = modelReturning("{}");
         adapter(chatModel, true).extract(request());
 
         ArgumentCaptor<Prompt> captor = ArgumentCaptor.forClass(Prompt.class);
@@ -128,7 +128,7 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
 
     @Test
     void returnsSafeMetadataWithoutContent() {
-        ChatModel chatModel = modelReturning("{\"schemaVersion\":\"sighting-v1\"}");
+        OllamaChatModel chatModel = modelReturning("{\"schemaVersion\":\"sighting-v1\"}");
         RawModelExtractionResponse response = adapter(chatModel).extract(request());
 
         assertThat(response.provider()).isEqualTo("ollama");
@@ -151,9 +151,10 @@ class SpringAiOllamaStructuredWildlifeExtractionModelTest {
     @Test
     void rejectsOversizedResponse() {
         String big = "x".repeat(200);
+        OllamaChatModel oversizedModel = modelReturning(big);
         SpringAiOllamaStructuredWildlifeExtractionModel adapter =
                 new SpringAiOllamaStructuredWildlifeExtractionModel(
-                        modelReturning(big), promptFactory, mapper,
+                        oversizedModel, promptFactory, mapper,
                         TestProperties.withMaximumModelResponseLength(50),
                         new OllamaTuningProperties(false, 8192, 2048, "30m"),
                         new OllamaGrammarSchemaFactory(mapper), "test-model");

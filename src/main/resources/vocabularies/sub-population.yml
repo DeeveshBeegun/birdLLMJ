@@ -1,8 +1,21 @@
-﻿# Controlled vocabulary: SubPopulation
+# Controlled vocabulary: SubPopulation
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: SubPopulation
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - BAM
+  - BEL
+  - COM
+  - GOR
+  - PWD
+  - IAA
+  - PET
+  - PLL
+  - EFR
+  - FER
+  - LBRG
+  - VDL
+  - OTHER
 aliases: {}

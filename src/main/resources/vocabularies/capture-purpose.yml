@@ -1,8 +1,18 @@
-﻿# Controlled vocabulary: CapturePurpose
+# Controlled vocabulary: CapturePurpose
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: CapturePurpose
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - CHICK_RINGING
+  - UN_RINGED
+  - FADED_RINGS
+  - HEALTH_CHECK
+  - OTHER
+aliases:
+  "chick ringing": CHICK_RINGING
+  "un ringed": UN_RINGED
+  "unringed": UN_RINGED
+  "faded rings": FADED_RINGS
+  "health check": HEALTH_CHECK

@@ -1,8 +1,49 @@
-﻿# Controlled vocabulary: FeederLocation
+# Controlled vocabulary: FeederLocation
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: FeederLocation
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NA
+  - OTHER
+  - MAIN_AVIARY
+  - PINK_PIGEON_FEEDERS
+  - SMALL_AVIARY
+  - FS1
+  - FS2
+  - FS3
+  - FS4
+  - FS5
+  - FS6
+  - FS7
+  - FS8
+  - FS9
+  - FS10
+  - FS11
+  - FS12
+  - FS13
+  - FS14
+  - FS15
+  - FS16
+  - FS17
+  - FS18
+  - FS19
+  - FS20
+  - FS21
+  - FS22
+  - HOPPER
+  - BEL_OMBRE
+  - FERNEY
+  - CAMP
+  - MARE_LONGUE
+  - PLATEAU_TODD
+  - BRISE_FER
+aliases:
+  "main aviary": MAIN_AVIARY
+  "pink pigeon feeders": PINK_PIGEON_FEEDERS
+  "small aviary": SMALL_AVIARY
+  "bel ombre": BEL_OMBRE
+  "mare longue": MARE_LONGUE
+  "plateau todd": PLATEAU_TODD
+  "brise fer": BRISE_FER

@@ -1,8 +1,12 @@
-﻿# Controlled vocabulary: ActivityLevel
+# Controlled vocabulary: ActivityLevel
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: ActivityLevel
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - NORMAL
+  - MEDIUM
+  - LOW
+  - NA
 aliases: {}

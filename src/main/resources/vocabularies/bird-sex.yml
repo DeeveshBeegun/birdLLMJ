@@ -1,8 +1,16 @@
-﻿# Controlled vocabulary: BirdSex
+# Controlled vocabulary: BirdSex
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: BirdSex
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - MALE
+  - FEMALE
+  - UNK
+  - NA
+aliases:
+  "m": MALE
+  "f": FEMALE
+  "unknown": UNK
+  "unknown sex": UNK

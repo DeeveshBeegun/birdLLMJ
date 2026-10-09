@@ -1,8 +1,28 @@
-﻿# Controlled vocabulary: CaptureMethod
+# Controlled vocabulary: CaptureMethod
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: CaptureMethod
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - AVIARY
+  - NESTLING
+  - IN_NEST
+  - MIST_NEST
+  - IN_AVIARY
+  - IN_FEEDER
+  - OPPORTUNISTIC
+  - HAND_REARING
+  - NOOSE_HAT
+  - NOOSE_CARPET
+  - BAL_CHATRI
+  - OTHER
+aliases:
+  "in nest": IN_NEST
+  "mist nest": MIST_NEST
+  "in aviary": IN_AVIARY
+  "in feeder": IN_FEEDER
+  "hand rearing": HAND_REARING
+  "noose hat": NOOSE_HAT
+  "noose carpet": NOOSE_CARPET
+  "bal chatri": BAL_CHATRI

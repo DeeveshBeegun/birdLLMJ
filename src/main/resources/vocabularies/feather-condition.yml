@@ -1,8 +1,11 @@
-﻿# Controlled vocabulary: FeatherCondition
+# Controlled vocabulary: FeatherCondition
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: FeatherCondition
 mode: OPEN
 required: false
-allowedValues: []
+allowedValues:
+  - GOOD
+  - POOR
+  - NA
 aliases: {}

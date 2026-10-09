@@ -1,5 +1,18 @@
 package com.acn.wildlifeextractor.domain.extraction;
 
+import com.acn.wildlifeextractor.domain.enums.BirdSexForFeedingObservation;
+import com.acn.wildlifeextractor.domain.enums.BreedingStatus;
+import com.acn.wildlifeextractor.domain.enums.Cloud;
+import com.acn.wildlifeextractor.domain.enums.FeedingOutcome;
+import com.acn.wildlifeextractor.domain.enums.ItemConsumed;
+import com.acn.wildlifeextractor.domain.enums.ItemDescription;
+import com.acn.wildlifeextractor.domain.enums.Method;
+import com.acn.wildlifeextractor.domain.enums.Rain;
+import com.acn.wildlifeextractor.domain.enums.Ring;
+import com.acn.wildlifeextractor.domain.enums.Stage;
+import com.acn.wildlifeextractor.domain.enums.SubPopulation;
+import com.acn.wildlifeextractor.domain.enums.TreeStatus;
+import com.acn.wildlifeextractor.domain.enums.Wind;
 import com.acn.wildlifeextractor.domain.field.ExtractedCode;
 import com.acn.wildlifeextractor.domain.field.ExtractedDate;
 import com.acn.wildlifeextractor.domain.field.ExtractedDecimal;
@@ -17,30 +30,30 @@ public record FeedingObservationExtractionFields(
         ExtractedDecimal longitude,
         ExtractedString comment,
         ExtractedDate observedTime,
-        ExtractedCode subPopulation,
+        ExtractedCode<SubPopulation> subPopulation,
         ExtractedReference species,
-        ExtractedCode leftLeg,
-        ExtractedCode rightLeg,
-        ExtractedCode upperRight,
-        ExtractedCode upperLeft,
-        ExtractedCode lowerRight,
-        ExtractedCode lowerLeft,
+        ExtractedCode<Ring> leftLeg,
+        ExtractedCode<Ring> rightLeg,
+        ExtractedCode<Ring> upperRight,
+        ExtractedCode<Ring> upperLeft,
+        ExtractedCode<Ring> lowerRight,
+        ExtractedCode<Ring> lowerLeft,
         ExtractedReference ringingMorphs,
-        ExtractedCode stage,
-        ExtractedCode seenSex,
-        ExtractedCode itemConsumed,
-        ExtractedCode itemDescription,
+        ExtractedCode<Stage> stage,
+        ExtractedCode<BirdSexForFeedingObservation> seenSex,
+        ExtractedCode<ItemConsumed> itemConsumed,
+        ExtractedCode<ItemDescription> itemDescription,
         ExtractedReference treeSpecies,
-        ExtractedCode treeStatus,
+        ExtractedCode<TreeStatus> treeStatus,
         ExtractedString foragingHeight,
         ExtractedString treeHeight,
-        ExtractedCode breedingStatus,
+        ExtractedCode<BreedingStatus> breedingStatus,
         ExtractedString nestReference,
         ExtractedString nestSiteName,
-        ExtractedCode feedingOutCome,
-        ExtractedCode cloud,
-        ExtractedCode wind,
-        ExtractedCode rain,
-        ExtractedCode method
+        ExtractedCode<FeedingOutcome> feedingOutCome,
+        ExtractedCode<Cloud> cloud,
+        ExtractedCode<Wind> wind,
+        ExtractedCode<Rain> rain,
+        ExtractedCode<Method> method
 ) {
 }

@@ -1,8 +1,24 @@
-﻿# Controlled vocabulary: CompetitorBehaviour
+# Controlled vocabulary: CompetitorBehaviour
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: CompetitorBehaviour
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NA
+  - NO_INTERACTION
+  - INTERACTING_WITH_FODY
+  - CALLING_AT_SPECIES_OF_INTEREST
+  - TRYING_TO_ENTER_NEST
+  - USING_THE_NEST
+  - OTHER
+  - CHASING_SPECIES_OF_INTEREST
+  - FIGHTING_SPECIES_OF_INTEREST
+aliases:
+  "no interaction": NO_INTERACTION
+  "interacting with fody": INTERACTING_WITH_FODY
+  "calling at species of interest": CALLING_AT_SPECIES_OF_INTEREST
+  "trying to enter nest": TRYING_TO_ENTER_NEST
+  "using the nest": USING_THE_NEST
+  "chasing species of interest": CHASING_SPECIES_OF_INTEREST
+  "fighting species of interest": FIGHTING_SPECIES_OF_INTEREST

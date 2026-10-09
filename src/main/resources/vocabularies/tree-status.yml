@@ -1,8 +1,14 @@
-﻿# Controlled vocabulary: TreeStatus
+# Controlled vocabulary: TreeStatus
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: TreeStatus
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - ENDEMIC
+  - EXOTIC
+  - OTHER
+  - UNK
+  - NATIVE
+aliases:
+  "unknown": UNK

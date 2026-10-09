@@ -84,6 +84,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ModelUnavailableException.class)
     ProblemDetail handleUnavailable(ModelUnavailableException ex) {
+        log.error("Model unavailable: {}", ex.getMessage(), ex.getCause());
         return problem(HttpStatus.SERVICE_UNAVAILABLE, ex.errorCode(), "Model unavailable",
                 "The extraction model is currently unavailable");
     }

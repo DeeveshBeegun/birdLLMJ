@@ -2,6 +2,15 @@ package com.acn.wildlifeextractor.domain.extraction;
 
 import java.util.List;
 
+import com.acn.wildlifeextractor.domain.enums.BirdSex;
+import com.acn.wildlifeextractor.domain.enums.ClutchNumber;
+import com.acn.wildlifeextractor.domain.enums.CurrentNestStage;
+import com.acn.wildlifeextractor.domain.enums.GenderPresence;
+import com.acn.wildlifeextractor.domain.enums.NestOutcome;
+import com.acn.wildlifeextractor.domain.enums.NestSiteAccessed;
+import com.acn.wildlifeextractor.domain.enums.ObservationType;
+import com.acn.wildlifeextractor.domain.enums.PurposeOfVisit;
+import com.acn.wildlifeextractor.domain.enums.SubPopulation;
 import com.acn.wildlifeextractor.domain.field.ExtractedBoolean;
 import com.acn.wildlifeextractor.domain.field.ExtractedCode;
 import com.acn.wildlifeextractor.domain.field.ExtractedDate;
@@ -26,25 +35,25 @@ public record NestEggsChickExtractionFields(
         ExtractedTime startTime,
         ExtractedTime endTime,
         ExtractedReference species,
-        ExtractedCode subPopulation,
+        ExtractedCode<SubPopulation> subPopulation,
         ExtractedString nestReference,
         ExtractedString nestSiteName,
-        ExtractedCode purposeOfVisit,
-        ExtractedCode nestSiteAccessed,
-        ExtractedCode currentNestStage,
-        ExtractedCode malePresence,
+        ExtractedCode<PurposeOfVisit> purposeOfVisit,
+        ExtractedCode<NestSiteAccessed> nestSiteAccessed,
+        ExtractedCode<CurrentNestStage> currentNestStage,
+        ExtractedCode<GenderPresence> malePresence,
         ExtractedString maleId,
-        ExtractedCode femalePresence,
+        ExtractedCode<GenderPresence> femalePresence,
         ExtractedString femaleId,
         ExtractedString bird1ID,
-        ExtractedCode bird1Sex,
+        ExtractedCode<BirdSex> bird1Sex,
         ExtractedString bird2ID,
-        ExtractedCode bird2Sex,
-        ExtractedCode observationType,
-        ExtractedCode clutchNumber,
+        ExtractedCode<BirdSex> bird2Sex,
+        ExtractedCode<ObservationType> observationType,
+        ExtractedCode<ClutchNumber> clutchNumber,
         List<EggExtraction> eggDetails,
         List<ChickExtraction> chickDetails,
-        ExtractedCode nestOutcome,
+        ExtractedCode<NestOutcome> nestOutcome,
         ExtractedBoolean photoMentioned,
         NestEggsChickLegacy legacy
 ) {

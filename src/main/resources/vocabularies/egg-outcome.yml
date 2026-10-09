@@ -1,8 +1,19 @@
-﻿# Controlled vocabulary: EggOutcome
+# Controlled vocabulary: EggOutcome
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: EggOutcome
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - DAMAGED
+  - HATCHED
+  - UNHATCHED_VIABLE
+  - UNHATCHED_NON_VIABLE
+  - UNHATCHED_UNK
+  - NA
+  - UNK
+aliases:
+  "unhatched viable": UNHATCHED_VIABLE
+  "unhatched non viable": UNHATCHED_NON_VIABLE
+  "unhatched unknown": UNHATCHED_UNK
+  "unknown": UNK

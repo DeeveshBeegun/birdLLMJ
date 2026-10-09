@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.acn.wildlifeextractor.application.decision.ExtractionDecisionService;
 import com.acn.wildlifeextractor.application.error.SchemaValidationException;
+import com.acn.wildlifeextractor.application.jev.JevExtractionCorrectionService;
 import com.acn.wildlifeextractor.application.reference.ReferenceResolutionStage;
 import com.acn.wildlifeextractor.application.validation.FieldStatusScanner.ScanResult;
 import com.acn.wildlifeextractor.application.vocabulary.VocabularyValidator;
@@ -22,8 +23,8 @@ import org.springframework.stereotype.Component;
  * Runs the validation pipeline in the mandated order:
  * <pre>
  * JSON parsing → JSON Schema validation → DTO mapping → Jakarta Bean Validation
- * → status scan → vocabulary validation → evidence matching → reference resolution
- * → business validation → required-field check → deterministic decision
+ * → status scan → JEV correction → vocabulary validation → evidence matching
+ * → reference resolution → business validation → required-field check → deterministic decision
  * </pre>
  * Structural failures (malformed JSON, schema violations, mapping failures) are thrown as
  * exceptions so the orchestrator can decide whether to attempt a single correction. All other
@@ -37,6 +38,7 @@ public class ExtractionValidationPipeline {
     private final ExtractionDtoMapper dtoMapper;
     private final Validator beanValidator;
     private final FieldStatusScanner fieldStatusScanner;
+    private final JevExtractionCorrectionService jevCorrectionService;
     private final VocabularyValidator vocabularyValidator;
     private final EvidenceValidator evidenceValidator;
     private final ReferenceResolutionStage referenceResolutionStage;
@@ -50,6 +52,7 @@ public class ExtractionValidationPipeline {
                                         ExtractionDtoMapper dtoMapper,
                                         Validator beanValidator,
                                         FieldStatusScanner fieldStatusScanner,
+                                        JevExtractionCorrectionService jevCorrectionService,
                                         VocabularyValidator vocabularyValidator,
                                         EvidenceValidator evidenceValidator,
                                         ReferenceResolutionStage referenceResolutionStage,
@@ -62,6 +65,7 @@ public class ExtractionValidationPipeline {
         this.dtoMapper = dtoMapper;
         this.beanValidator = beanValidator;
         this.fieldStatusScanner = fieldStatusScanner;
+        this.jevCorrectionService = jevCorrectionService;
         this.vocabularyValidator = vocabularyValidator;
         this.evidenceValidator = evidenceValidator;
         this.referenceResolutionStage = referenceResolutionStage;
@@ -87,6 +91,10 @@ public class ExtractionValidationPipeline {
 
         ScanResult scan = fieldStatusScanner.scan(fields);
         fieldStatusScanner.collectStatusFindings(scan, findings);
+
+        // JEV correction: override high-confidence mismatches before vocabulary validation.
+        jevCorrectionService.correct(scan, transcript);
+
         vocabularyValidator.validate(scan, findings, properties.strictVocabularyValidation());
         if (properties.evidenceCheckEnabled()) {
             evidenceValidator.validate(scan, transcript, findings);

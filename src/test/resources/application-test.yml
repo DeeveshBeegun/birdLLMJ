@@ -1,5 +1,12 @@
 spring:
   ai:
+    # Stub OpenAI/OpenRouter config — never contacted during the normal test lifecycle.
+    openai:
+      base-url: http://localhost:0
+      api-key: test-key
+      chat:
+        options:
+          model: test-model
     ollama:
       # A base URL that is never contacted during the normal test lifecycle.
       base-url: http://localhost:0

@@ -50,7 +50,8 @@ class CorrectionFlowTest {
 
     private ExtractionCommand command(String requestId) {
         return new ExtractionCommand(requestId, "conv", WildlifeFormType.SIGHTING,
-                "I saw an Echo Parakeet", OffsetDateTime.parse("2026-07-30T10:30:00+04:00"), "en");
+                "I saw an Echo Parakeet", OffsetDateTime.parse("2026-07-30T10:30:00+04:00"), "en",
+                null, null, null, null, null, null);
     }
 
     @Test

@@ -1,8 +1,14 @@
-﻿# Controlled vocabulary: RearingType
+# Controlled vocabulary: RearingType
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: RearingType
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - WILD_HATCHED
+  - CAPTIVE_BRED
+  - HAND_REARED
+aliases:
+  "wild hatched": WILD_HATCHED
+  "captive bred": CAPTIVE_BRED
+  "hand reared": HAND_REARED

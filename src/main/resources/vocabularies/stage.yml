@@ -1,8 +1,19 @@
-﻿# Controlled vocabulary: Stage
+# Controlled vocabulary: Stage
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Stage
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - ADULT
+  - JUVENILE_KNOWN
+  - JUVENILE_SUSPECTED
+  - FLEDGLING
+  - YEAR_OLD_MALE
+  - JUVENILE
+  - UNK
+aliases:
+  "juvenile known": JUVENILE_KNOWN
+  "juvenile suspected": JUVENILE_SUSPECTED
+  "year old male": YEAR_OLD_MALE
+  "unknown": UNK

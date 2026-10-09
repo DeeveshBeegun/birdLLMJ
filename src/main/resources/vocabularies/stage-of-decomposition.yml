@@ -1,8 +1,19 @@
-﻿# Controlled vocabulary: StageOfDecomposition
+# Controlled vocabulary: StageOfDecomposition
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: StageOfDecomposition
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - RECENTLY_DEAD
+  - EARLY_DECOMPOSITION
+  - LATE_DECOMPOSITION
+  - SKELETON_DRY_REMAINS
+  - UNK
+aliases:
+  "recently dead": RECENTLY_DEAD
+  "early decomposition": EARLY_DECOMPOSITION
+  "late decomposition": LATE_DECOMPOSITION
+  "skeleton dry remains": SKELETON_DRY_REMAINS
+  "skeleton": SKELETON_DRY_REMAINS
+  "unknown": UNK

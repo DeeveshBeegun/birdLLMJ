@@ -41,7 +41,7 @@ public class ResilientWildlifeExtractionModel implements StructuredWildlifeExtra
     private final Semaphore admission;
 
     public ResilientWildlifeExtractionModel(
-            @Qualifier("springAiOllamaStructuredWildlifeExtractionModel") StructuredWildlifeExtractionModel delegate,
+            @Qualifier("rawExtractionModel") StructuredWildlifeExtractionModel delegate,
             CircuitBreaker extractionCircuitBreaker,
             Bulkhead extractionBulkhead,
             @Qualifier("extractionModelExecutor") ExecutorService extractionModelExecutor,

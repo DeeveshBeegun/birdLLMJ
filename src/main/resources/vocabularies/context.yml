@@ -1,8 +1,20 @@
-﻿# Controlled vocabulary: Context
+# Controlled vocabulary: Context
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Context
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NEST_SITE_CREATION
+  - REPLACING_TREE_CAVITY
+  - REPLACING_NEST_BOX
+  - CHANGING_NEST_BOX_POSITION
+  - NEST_SITE_REMOVAL
+  - NEWLY_FOUND_TREE_CLIFF_CAVITY
+aliases:
+  "nest site creation": NEST_SITE_CREATION
+  "replacing tree cavity": REPLACING_TREE_CAVITY
+  "replacing nest box": REPLACING_NEST_BOX
+  "changing nest box position": CHANGING_NEST_BOX_POSITION
+  "nest site removal": NEST_SITE_REMOVAL
+  "newly found tree cliff cavity": NEWLY_FOUND_TREE_CLIFF_CAVITY

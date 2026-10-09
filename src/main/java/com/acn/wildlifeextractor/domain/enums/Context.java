@@ -1,0 +1,6 @@
+package com.acn.wildlifeextractor.domain.enums;
+
+public enum Context {
+    NEST_SITE_CREATION, REPLACING_TREE_CAVITY, REPLACING_NEST_BOX,
+    CHANGING_NEST_BOX_POSITION, NEST_SITE_REMOVAL, NEWLY_FOUND_TREE_CLIFF_CAVITY
+}

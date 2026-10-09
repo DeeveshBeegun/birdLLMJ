@@ -1,8 +1,29 @@
-﻿# Controlled vocabulary: PurposeOfVisit
+# Controlled vocabulary: PurposeOfVisit
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: PurposeOfVisit
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - OPPORTUNISTIC
+  - PRE_SEASON
+  - EGG_CHECK
+  - HATCH_CHECK
+  - RINGING
+  - MAINTENANCE
+  - IDENTIFYING_PAIR
+  - NEST_WATCH
+  - BLEEDING
+  - BLEEDING_AND_RINGING
+  - FLEDGE_CHECK
+  - PRE_FLEDGE_CHECK
+  - OTHER
+aliases:
+  "pre season": PRE_SEASON
+  "egg check": EGG_CHECK
+  "hatch check": HATCH_CHECK
+  "identifying pair": IDENTIFYING_PAIR
+  "nest watch": NEST_WATCH
+  "bleeding and ringing": BLEEDING_AND_RINGING
+  "fledge check": FLEDGE_CHECK
+  "pre fledge check": PRE_FLEDGE_CHECK

@@ -1,8 +1,14 @@
-﻿# Controlled vocabulary: ChickStatus
+# Controlled vocabulary: ChickStatus
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: ChickStatus
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - ALIVE
+  - FLEDGED
+  - DEAD
+  - NA
+  - UNK
+aliases:
+  "unknown": UNK

@@ -1,8 +1,22 @@
-﻿# Controlled vocabulary: Impact
+# Controlled vocabulary: Impact
 # Initially OPEN with an empty allowed set. Populate allowedValues and switch mode to CLOSED
 # once the production allowed values for this vocabulary are confirmed.
 name: Impact
 mode: OPEN
 required: false
-allowedValues: []
-aliases: {}
+allowedValues:
+  - NA
+  - UNK
+  - NO_OBVIOUS_IMPACT
+  - BREEDING_SPECIES_OF_INTEREST_DELAYED_ENTERING_NEST
+  - BREEDING_SPECIES_OF_INTEREST_DELAYED_LEAVING_NEST
+  - BREEDING_SPECIES_OF_INTEREST_CANT_ACCESS_NEST
+  - SPECIES_OF_INTEREST_CHASING_COMPETITOR
+  - BREEDING_SPECIES_OF_INTEREST_CHASING_COMPETITOR
+  - SPECIES_OF_INTEREST_FIGHTING_COMPETITOR
+  - BREEDING_SPECIES_OF_INTEREST_FIGHTING_COMPETITOR
+  - PREDATION_DESTRUCTION_OF_NEST_CONTENTS
+  - OTHER
+aliases:
+  "no obvious impact": NO_OBVIOUS_IMPACT
+  "unknown": UNK
