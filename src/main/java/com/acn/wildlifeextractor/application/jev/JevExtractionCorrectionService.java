@@ -113,9 +113,9 @@ public class JevExtractionCorrectionService {
 
         // ── Call JEV ─────────────────────────────────────────────────────────
         Map<String, Object> state = Map.of("transcript", transcript);
-        log.info("JEV request: questions={}", toJson(questions));
+        log.info("JEV request:\n{}", toPrettyJson(questions));
         Map<String, JevAnswer> answers = jevClient.ask(state, questions);
-        log.info("JEV response: answers={}", toJson(answers));
+        log.info("JEV response:\n{}", toPrettyJson(answers));
 
         if (answers.isEmpty()) {
             return;
@@ -164,9 +164,9 @@ public class JevExtractionCorrectionService {
         }
     }
 
-    private String toJson(Object value) {
+    private String toPrettyJson(Object value) {
         try {
-            return objectMapper.writeValueAsString(value);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
         } catch (JsonProcessingException e) {
             return value.toString();
         }
